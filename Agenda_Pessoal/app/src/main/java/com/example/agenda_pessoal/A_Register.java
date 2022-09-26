@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.example.agenda_pessoal.Controller.UsuarioController;
 import com.example.agenda_pessoal.Model.Usuario;
 
-public class TelaCadastroUsuario extends AppCompatActivity {
+import java.util.Objects;
+
+public class A_Register extends AppCompatActivity {
 
     String nome, email, telefone, password;
     EditText et_nome;
@@ -28,7 +30,10 @@ public class TelaCadastroUsuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_cadastro_usuario);
+        setContentView(R.layout.activity_register);
+
+        // Importantes
+        Objects.requireNonNull(getSupportActionBar()).hide(); //esconde a action bar
 
         btn_cadastro=findViewById(R.id.btn_cadastrar);
 
@@ -39,7 +44,7 @@ public class TelaCadastroUsuario extends AppCompatActivity {
         et_telefone=findViewById(R.id.et_telefone);
         et_password=findViewById(R.id.et_password);
 
-        tv_cadastro=findViewById(R.id.tv_cadastro);
+
     }
 
     public void cadastrar(View v) {
@@ -59,7 +64,7 @@ public class TelaCadastroUsuario extends AppCompatActivity {
     }
 
     public void abrirLogin(View v){
-        Intent it_telaLogin = new Intent(this, MainActivity.class);
+        Intent it_telaLogin = new Intent(this, A_Home.class);
         startActivity(it_telaLogin);
     }
 
