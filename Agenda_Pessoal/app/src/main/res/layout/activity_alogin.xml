@@ -24,7 +24,7 @@
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/azul"
-                app:icon="?attr/homeAsUpIndicator"
+                app:icon="@drawable/icon_voltar"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
 
@@ -90,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/azul"
+                android:onClick="abrirTela"
                 android:text="Entrar"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"
