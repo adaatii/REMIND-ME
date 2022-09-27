@@ -1,4 +1,4 @@
-package com.example.agenda_pessoal;
+package com.example.agenda_pessoal.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.UsuarioController;
 import com.example.agenda_pessoal.Model.Usuario;
+import com.example.agenda_pessoal.R;
 
 import java.util.Objects;
 

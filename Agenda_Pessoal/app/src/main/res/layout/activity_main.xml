@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".A_Home">
+    tools:context=".View.A_Home">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="@color/azul"
+                android:onClick="abrirTelaLogin"
                 android:text="Login"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"
