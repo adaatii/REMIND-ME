@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import com.example.agenda_pessoal.Controller.Data;
+import com.example.agenda_pessoal.Controller.User;
 import com.example.agenda_pessoal.R;
 
 import java.util.Objects;
 
 public class A_Home extends AppCompatActivity {
-
+    Data dataInstance = new Data();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +23,11 @@ public class A_Home extends AppCompatActivity {
 
         // Importantes
         getWindow().setStatusBarColor(Color.rgb(46, 113, 212));
-        Objects.requireNonNull(getSupportActionBar()).hide(); //esconde a action bar
+
+
+        Log.d("OperSerialize" , dataInstance.serialize());
+
+
     }
 
     public void abrirCadastroUsuario(View v){
@@ -29,7 +36,8 @@ public class A_Home extends AppCompatActivity {
     }
     
     public void abrirTelaLogin(View v){
-        Intent it_telaLogin = new Intent(this, A_Login.class);
-        startActivity(it_telaLogin);
+        Intent it_aLogin = new Intent(this, A_Login.class);
+        it_aLogin.putExtra("Data", dataInstance);
+        startActivity(it_aLogin);
     }
 }

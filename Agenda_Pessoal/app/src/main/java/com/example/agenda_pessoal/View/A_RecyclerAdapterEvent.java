@@ -2,7 +2,6 @@ package com.example.agenda_pessoal.View;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,14 +14,14 @@ import com.example.agenda_pessoal.R;
 
 import java.util.ArrayList;
 
-public class A_RecyclerAdapterCompromisso extends RecyclerView.Adapter<A_RecyclerAdapterCompromisso.CompromissoViewHolder> {
+public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapterEvent.CompromissoViewHolder> {
 
     private ArrayList<String> titulo;
     private ArrayList<String> descricao;
     private ArrayList<String> hora;    
     private Context context;
 
-    public A_RecyclerAdapterCompromisso(ArrayList<String> titulo, ArrayList<String> descricao, ArrayList<String> hora, Context context) {
+    public A_RecyclerAdapterEvent(ArrayList<String> titulo, ArrayList<String> descricao, ArrayList<String> hora, Context context) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.hora = hora;
@@ -33,7 +32,7 @@ public class A_RecyclerAdapterCompromisso extends RecyclerView.Adapter<A_Recycle
     @Override
     public CompromissoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { // define o card_desing que foi feito, determina qual desing sera mostrado
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_compromisso_desing, parent, false); // primeiro parametro o card_desing, parente, false
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_event_desing, parent, false); // primeiro parametro o card_desing, parente, false
         return new CompromissoViewHolder(view);
     }
 

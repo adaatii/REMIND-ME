@@ -10,10 +10,10 @@ import com.example.agenda_pessoal.R;
 
 import java.util.ArrayList;
 
-public class A_Compromisso extends AppCompatActivity {
+public class A_Event extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private A_RecyclerAdapterCompromisso adapterCompromisso;
+    private A_RecyclerAdapterEvent adapterCompromisso;
     private ArrayList<String> titulo = new ArrayList<>();
     private ArrayList<String> descricao = new ArrayList<>();
     private ArrayList<String> hora = new ArrayList<>();
@@ -21,10 +21,10 @@ public class A_Compromisso extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_acompromisso);
+        setContentView(R.layout.activity_event);
 
         recyclerView = findViewById(R.id.recyclerView_Compromisso);
-        recyclerView.setLayoutManager(new LinearLayoutManager(A_Compromisso.this)); // Como o RecyclerView será mostrado na tela
+        recyclerView.setLayoutManager(new LinearLayoutManager(A_Event.this)); // Como o RecyclerView será mostrado na tela
 
         titulo.add("Oftamologista");
         titulo.add("Reunião ED");
@@ -38,7 +38,7 @@ public class A_Compromisso extends AppCompatActivity {
         hora.add("11:00");
         hora.add("09:30");
 
-        adapterCompromisso = new A_RecyclerAdapterCompromisso(titulo, descricao, hora, A_Compromisso.this);
+        adapterCompromisso = new A_RecyclerAdapterEvent(titulo, descricao, hora, A_Event.this);
         recyclerView.setAdapter(adapterCompromisso);
     }
 }

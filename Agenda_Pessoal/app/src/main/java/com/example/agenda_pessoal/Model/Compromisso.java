@@ -79,7 +79,7 @@ public class Compromisso {
         recorrencia_compromisso = novaRecorrencia_compromisso;
     }
 
-    public int getVisibilidade_compromisso() {
+    public int getVisibilidade_cmpromisso() {
         return visibilidade_compromisso;
     }
 

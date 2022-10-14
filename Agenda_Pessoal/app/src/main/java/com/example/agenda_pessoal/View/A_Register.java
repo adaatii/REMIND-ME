@@ -9,11 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.agenda_pessoal.Controller.UsuarioController;
-import com.example.agenda_pessoal.Model.Usuario;
+import com.example.agenda_pessoal.Controller.Data;
+import com.example.agenda_pessoal.Controller.User;
 import com.example.agenda_pessoal.R;
-
-import java.util.Objects;
 
 public class A_Register extends AppCompatActivity {
 
@@ -22,11 +20,11 @@ public class A_Register extends AppCompatActivity {
     EditText et_email;
     EditText et_telefone;
     EditText et_password;
-    TextView tv_cadastro;
     Button btn_cadastro;
     Button btn_voltar;
+    Data dataInstance;
 
-    UsuarioController l = new UsuarioController(5);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +32,10 @@ public class A_Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         // Importantes
-        Objects.requireNonNull(getSupportActionBar()).hide(); //esconde a action bar
+
+        dataInstance = getIntent().getExtras().getParcelable("Data");
 
         btn_cadastro=findViewById(R.id.btn_cadastrar);
-
-
-
         et_nome=findViewById(R.id.et_nome);
         et_email=findViewById(R.id.et_email);
         et_telefone=findViewById(R.id.et_telefone);
@@ -49,19 +45,21 @@ public class A_Register extends AppCompatActivity {
     }
 
     public void cadastrar(View v) {
+        nome = et_nome.getText().toString();
+        email = et_email.getText().toString();
+        telefone = et_telefone.getText().toString();
+        password = et_password.getText().toString();
 
-        Usuario obj = new Usuario(nome, email, telefone, password);
-        obj.setNome(et_nome.getText().toString());
-        obj.setEmail(et_email.getText().toString());
-        obj.setTelefone(et_telefone.getText().toString());
-        obj.setPassword(et_password.getText().toString());
-        l.add(obj);
+        dataInstance.getDataUser().add(new User(nome,email,telefone,password));
+
+        int posicao = dataInstance.getDataUser().size()-1;
+
+
     }
 
     public void listar(View v){
 
-        l.lista();
-        tv_cadastro.setText(l.result);
+
     }
 
     public void abrirLogin(View v){
