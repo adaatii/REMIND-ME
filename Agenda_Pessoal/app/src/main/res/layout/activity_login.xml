@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/azul"
-                android:onClick="abrirTela"
+                android:onClick="openEvent"
                 android:text="Entrar"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"

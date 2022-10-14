@@ -10,22 +10,24 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.agenda_pessoal.Controller.Task;
 import com.example.agenda_pessoal.R;
 
 import java.util.ArrayList;
 
 public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapterEvent.CompromissoViewHolder> {
 
-    private ArrayList<String> titulo;
-    private ArrayList<String> descricao;
-    private ArrayList<String> hora;    
+    private ArrayList<Task> task = new ArrayList<Task>();
     private Context context;
 
-    public A_RecyclerAdapterEvent(ArrayList<String> titulo, ArrayList<String> descricao, ArrayList<String> hora, Context context) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.hora = hora;
+    public A_RecyclerAdapterEvent(ArrayList<Task> task, Context context){
         this.context = context;
+        for (int i = 0; i < task.size(); i++) {
+            Task item = task.get(i);
+            if (!item.isEvent()){
+                this.task.add(item);
+            }
+        }
     }
 
     @NonNull
@@ -38,13 +40,10 @@ public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapt
 
     @Override
     public void onBindViewHolder(@NonNull CompromissoViewHolder holder, int position){ // mostrara o data
-        holder.textViewTituloCompromisso.setText(titulo.get(position));
-        holder.textViewDescricaoCompromisso.setText(descricao.get(position));
-        holder.textViewHoraCompromisso.setText(hora.get(position));
-        holder.cardView.setOnClickListener(view -> {
+        Task item = task.get(position);
+        holder.bind(item);
+        holder.cardView.setOnClickListener(view -> {});
 
-
-        });
         /*holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,22 +54,31 @@ public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapt
 
     @Override
     public int getItemCount() { //a quantidade de informação que será mostrada na tela
-        return titulo.size();
+        return task.size();
     }
 
     public class CompromissoViewHolder extends RecyclerView.ViewHolder {
-        
-        private TextView textViewTituloCompromisso, textViewDescricaoCompromisso, textViewHoraCompromisso;
+
+        private TextView titleEvent, descriptionEvent, timeEvent;
         private CardView cardView;
-        
+
         public CompromissoViewHolder(@NonNull View itemView) {
             super(itemView);
-            
-            textViewTituloCompromisso = itemView.findViewById(R.id.tv_tituloCompromisso);
-            textViewDescricaoCompromisso = itemView.findViewById(R.id.tv_descricaoCompromisso);
-            textViewHoraCompromisso = itemView.findViewById(R.id.tv_horaCompromisso);
+
+            titleEvent = itemView.findViewById(R.id.tv_tituloCompromisso);
+            descriptionEvent = itemView.findViewById(R.id.tv_descricaoCompromisso);
+            timeEvent = itemView.findViewById(R.id.tv_horaCompromisso);
             cardView = itemView.findViewById(R.id.card_viewCompromisso);
-            
+
         }
+
+        public void bind(Task item){
+            titleEvent.setText(item.getTitle());
+            descriptionEvent.setText(item.description);
+            timeEvent.setText(" ");
+        }
+
+
     }
+
 }

@@ -2,6 +2,7 @@ package com.example.agenda_pessoal.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +12,10 @@ import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.User;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
-public class A_Register extends AppCompatActivity {
+public class A_Register extends AppCompatActivity implements Constants {
 
     String nome, email, telefone, password;
     EditText et_nome;
@@ -40,11 +42,9 @@ public class A_Register extends AppCompatActivity {
         et_email=findViewById(R.id.et_email);
         et_telefone=findViewById(R.id.et_telefone);
         et_password=findViewById(R.id.et_password);
-
-
     }
 
-    public void cadastrar(View v) {
+    public void registerUser(View v) {
         nome = et_nome.getText().toString();
         email = et_email.getText().toString();
         telefone = et_telefone.getText().toString();
@@ -52,20 +52,21 @@ public class A_Register extends AppCompatActivity {
 
         dataInstance.getDataUser().add(new User(nome,email,telefone,password));
 
-        int posicao = dataInstance.getDataUser().size()-1;
-
-
-    }
-
-    public void listar(View v){
-
-
+        Intent it_aHome = new Intent();
+        it_aHome.putExtra("NewUser", dataInstance);
+        setResult(RESULT_FIRST_USER, it_aHome);
+        finish();
     }
 
     public void abrirLogin(View v){
-        Intent it_telaLogin = new Intent(this, A_Home.class);
-        startActivity(it_telaLogin);
+        Intent it_aHome = new Intent();
+        setResult(RESULT_OK, it_aHome);
+        finish();
     }
 
-
+   public void returnToHome(View v){
+       Intent it_aHome = new Intent();
+       setResult(RESULT_DESTROY, it_aHome);
+       finish();
+   }
 }

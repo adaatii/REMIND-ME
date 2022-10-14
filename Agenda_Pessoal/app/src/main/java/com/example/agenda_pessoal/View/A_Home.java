@@ -10,12 +10,14 @@ import android.view.View;
 
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.User;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
 import java.util.Objects;
 
-public class A_Home extends AppCompatActivity {
+public class A_Home extends AppCompatActivity implements Constants {
     Data dataInstance = new Data();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,21 +25,44 @@ public class A_Home extends AppCompatActivity {
 
         // Importantes
         getWindow().setStatusBarColor(Color.rgb(46, 113, 212));
-
-
-        Log.d("OperSerialize" , dataInstance.serialize());
+        Log.d("OpenSerialize", dataInstance.serialize());
 
 
     }
 
-    public void abrirCadastroUsuario(View v){
-        Intent it_telaCadastroUsuario = new Intent(this, A_Register.class);
-        startActivity(it_telaCadastroUsuario);
+    public void openRegister(View v) {
+        Intent it_aRegister = new Intent(this, A_Register.class);
+        it_aRegister.putExtra("Data", dataInstance);
+        startActivityForResult(it_aRegister, REGISTER_ACTIVITY_REQUEST_CODE);
     }
-    
-    public void abrirTelaLogin(View v){
+
+    public void abrirTelaLogin(View v) {
         Intent it_aLogin = new Intent(this, A_Login.class);
         it_aLogin.putExtra("Data", dataInstance);
-        startActivity(it_aLogin);
+        startActivityForResult(it_aLogin, LOGIN_ACTIVITY_REQUEST_CODE);
+    }
+
+    // request code - Identificação da proxima tela,
+    // resultCode - feedback do que ocorreu na tela,
+    // data - retorna a informação
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("resultCode", Integer.toString(resultCode));
+        if (requestCode == REGISTER_ACTIVITY_REQUEST_CODE){
+            if (resultCode == RESULT_FIRST_USER){
+                Data dataSerialize = data.getExtras().getParcelable("NewUser");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("NewUser"));
+                Intent it_aLogin = new Intent(this, A_Login.class);
+                it_aLogin.putExtra("Data", dataInstance);
+                startActivityForResult(it_aLogin, LOGIN_ACTIVITY_REQUEST_CODE);
+            }else if(resultCode == RESULT_OK){
+                Intent it_aLogin = new Intent(this, A_Login.class);
+                it_aLogin.putExtra("Data", dataInstance);
+                startActivityForResult(it_aLogin, LOGIN_ACTIVITY_REQUEST_CODE);
+            }
+        }
     }
 }

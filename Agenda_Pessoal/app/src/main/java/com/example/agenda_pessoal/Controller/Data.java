@@ -39,12 +39,36 @@ public class Data implements Parcelable {
         }
     };
 
+    public void Update(Data updatedData){
+        dataUser.clear();
+        dataTask.clear();
+        dataRelationship.clear();
+        guest = updatedData.guest;
+        log = updatedData.log;
+
+        ArrayList<User> updatedDataUser = updatedData.getDataUser();
+        ArrayList<Task> updatedDataTask = updatedData.getDataTask();
+        ArrayList<Relationship> updatedDataRelationship = updatedData.getDataRelationship();
+
+        for (int i = 0; i < updatedDataUser.size(); i++)
+            dataUser.add(updatedDataUser.get(i));
+
+
+        for (int i = 0; i < updatedDataTask.size(); i++)
+            dataTask.add(updatedDataTask.get(i));
+
+
+        for (int i = 0; i < updatedDataRelationship.size(); i++)
+            dataRelationship.add(updatedDataRelationship.get(i));
+
+    }
     public void initializeValues(){
         dataUser.add(new User("Lucas","teste@teste","1298875748"
                 ,"123"));
         dataUser.add(new User("Leandro","teste2@teste","4845456484"
                 ,"123"));
         dataTask.add(new Task("Dor e sofrimento",0));
+        dataTask.get(0).description = "Na casinha";
         dataTask.add(new Task("Trabalho Enari",1));
         dataRelationship.add(new Relationship(0,1));
         dataRelationship.add(new Relationship(1,0));
@@ -53,6 +77,14 @@ public class Data implements Parcelable {
 
     public ArrayList<User> getDataUser() {
         return dataUser;
+    }
+
+    public ArrayList<Task> getDataTask() {
+        return dataTask;
+    }
+
+    public ArrayList<Relationship> getDataRelationship() {
+        return dataRelationship;
     }
 
     public String serialize(){

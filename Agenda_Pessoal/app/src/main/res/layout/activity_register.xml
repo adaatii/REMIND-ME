@@ -25,6 +25,7 @@
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/azul"
+                android:onClick="returnToHome"
                 app:icon="?attr/homeAsUpIndicator"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
@@ -124,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/azul"
-                android:onClick="cadastrar"
+                android:onClick="registerUser"
                 android:text="@string/cadastrar"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"
