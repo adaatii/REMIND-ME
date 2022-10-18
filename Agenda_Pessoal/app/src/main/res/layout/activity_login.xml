@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_backEvent"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/azul"
@@ -39,16 +39,15 @@
                 android:layout_height="284dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="Realize seu login!"
+                android:text="@string/realize_seu_login"
                 android:textAlignment="gravity"
                 android:textColor="@color/black"
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
 
-
             <EditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_login_email"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -56,14 +55,14 @@
                 android:background="@drawable/stl_et"
                 android:ems="10"
                 android:hint="@string/email"
-                android:inputType="textPersonName"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName|textEmailAddress"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-
+                tools:ignore="SpeakableTextPresentCheck,TextContrastCheck,TextContrastCheck" />
 
 
             <EditText
-                android:id="@+id/et_password"
+                android:id="@+id/et_login_password"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -71,9 +70,10 @@
                 android:background="@drawable/stl_et"
                 android:ems="10"
                 android:hint="@string/senha"
+                android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
 
 
@@ -85,13 +85,13 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_cadastrar"
+                android:id="@+id/btn_login"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/azul"
                 android:onClick="openEvent"
-                android:text="Entrar"
+                android:text="@string/entrar"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"
                 app:strokeWidth="2dp" />

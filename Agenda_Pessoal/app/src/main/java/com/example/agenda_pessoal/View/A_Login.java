@@ -2,13 +2,16 @@ package com.example.agenda_pessoal.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.agenda_pessoal.Controller.Data;
+import com.example.agenda_pessoal.Controller.User;
 import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
@@ -16,6 +19,9 @@ import java.util.Objects;
 
 public class A_Login extends AppCompatActivity implements Constants {
     Data dataInstance;
+    EditText id_login_email;
+    EditText id_login_password;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +32,15 @@ public class A_Login extends AppCompatActivity implements Constants {
         // Importantes
         getWindow().setStatusBarColor(Color.rgb(46, 113, 212));
 
+        id_login_email = findViewById(R.id.et_login_email);
+        id_login_password = findViewById(R.id.et_login_password);
+
     }
 
     public void openEvent(View v){
+        String log_email = id_login_email.getText().toString();
+        String log_password = id_login_password.getText().toString();
+
         Intent it_aEvent = new Intent(this, A_Event.class);
         it_aEvent.putExtra("Data", dataInstance);
         startActivityForResult(it_aEvent, EVENT_ACTIVITY_REQUEST_CODE);

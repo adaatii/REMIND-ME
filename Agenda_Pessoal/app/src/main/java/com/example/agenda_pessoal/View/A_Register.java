@@ -2,13 +2,11 @@ package com.example.agenda_pessoal.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.User;
@@ -38,9 +36,9 @@ public class A_Register extends AppCompatActivity implements Constants {
         dataInstance = getIntent().getExtras().getParcelable("Data");
 
         btn_cadastro=findViewById(R.id.btn_cadastrar);
-        et_nome=findViewById(R.id.et_nome);
+        et_nome=findViewById(R.id.et_name);
         et_email=findViewById(R.id.et_email);
-        et_telefone=findViewById(R.id.et_telefone);
+        et_telefone=findViewById(R.id.et_phone);
         et_password=findViewById(R.id.et_password);
     }
 
