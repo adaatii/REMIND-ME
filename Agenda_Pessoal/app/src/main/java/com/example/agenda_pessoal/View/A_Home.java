@@ -9,11 +9,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.agenda_pessoal.Controller.Data;
-import com.example.agenda_pessoal.Controller.User;
 import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
-
-import java.util.Objects;
 
 public class A_Home extends AppCompatActivity implements Constants {
     Data dataInstance = new Data();
@@ -21,7 +18,7 @@ public class A_Home extends AppCompatActivity implements Constants {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
         // Importantes
         getWindow().setStatusBarColor(Color.rgb(46, 113, 212));

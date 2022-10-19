@@ -9,4 +9,10 @@
     <string name="cadastrar" translatable="false">Cadastrar</string>
     <string name="entrar" translatable="false">Entrar</string>
     <string name="realize_seu_login" translatable="false">Realize seu login!</string>
+    <string name="data_aqui">DATA AQUI</string>
+    <string name="novo_evento">Novo Evento!</string>
+    <string name="t_titulo">Títilo</string>
+    <string name="descricao">Descrição</string>
+    <string name="data">Data</string>
+    <string name="hora">Hora</string>
 </resources>

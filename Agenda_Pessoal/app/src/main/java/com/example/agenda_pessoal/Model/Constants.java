@@ -7,6 +7,7 @@ public interface Constants {
     int LOGIN_ACTIVITY_REQUEST_CODE = 0;
     int REGISTER_ACTIVITY_REQUEST_CODE = 1;
     int EVENT_ACTIVITY_REQUEST_CODE = 2;
+    int NEW_EVENT_ACTIVITY_REQUEST_CODE = 3;
 
 
     //RESULTS

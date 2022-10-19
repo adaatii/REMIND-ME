@@ -21,13 +21,12 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_backEvents"
+                android:id="@+id/btn_backNewEventToEvents"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="357dp"
                 android:backgroundTint="@color/azul"
-                android:onClick="returnToHome"
                 app:icon="@drawable/icon_voltar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +46,7 @@
                 android:layout_height="143dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="Novo Evento!"
+                android:text="@string/novo_evento"
                 android:textAlignment="gravity"
                 android:textColor="@color/black"
                 android:textSize="34sp"
@@ -62,10 +61,11 @@
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/stl_et"
                 android:ems="10"
-                android:hint="Títilo"
+                android:hint="@string/t_titulo"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/et_description"
@@ -75,34 +75,57 @@
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/stl_et"
                 android:ems="10"
-                android:hint="Descrição"
+                android:hint="@string/descricao"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
 
-            <EditText
-                android:id="@+id/et_date"
-                android:layout_width="350dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/stl_et"
-                android:ems="10"
-                android:hint="Data"
-                android:minHeight="48dp" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/et_time"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/stl_et"
-                android:ems="10"
-                android:hint="Hora"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                <TextView
+                    android:id="@+id/et_dateNewEvent"
+                    android:layout_width="120dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="113dp"
+                    android:background="@drawable/stl_et"
+                    android:ems="10"
+                    android:hint="@string/data"
+                    android:importantForAutofill="no"
+                    android:inputType="date"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/et_timeNewEvent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/et_timeNewEvent"
+                    android:layout_width="120dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@drawable/stl_et"
+                    android:ems="10"
+                    android:hint="@string/hora"
+                    android:importantForAutofill="no"
+                    android:inputType="time"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 

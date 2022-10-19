@@ -13,7 +13,7 @@
         android:background="@color/azul">
 
         <Button
-            android:id="@+id/btn_eBack"
+            android:id="@+id/btn_backEventToLogin"
             android:layout_width="54dp"
             android:layout_height="50dp"
             android:layout_marginStart="2dp"
@@ -38,13 +38,16 @@
             android:layout_marginEnd="22dp"
             android:layout_marginBottom="9dp"
             android:inputType="text"
-            android:text="DATA AQUI"
+            android:text="@string/data_aqui"
+            android:textColor="@color/white"
             android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_newEvent"
             app:layout_constraintStart_toEndOf="@+id/btn_eBack"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/btn_newEvent"
@@ -52,10 +55,11 @@
             android:layout_height="50dp"
             android:layout_marginStart="205dp"
             android:backgroundTint="@color/azul"
+            android:onClick="openNewEventScreen"
             app:icon="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_datePick"
-            app:layout_constraintStart_toEndOf="@+id/btn_eBack"
+            app:layout_constraintStart_toEndOf="@+id/btn_backEventToLogin"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="SpeakableTextPresentCheck" />
