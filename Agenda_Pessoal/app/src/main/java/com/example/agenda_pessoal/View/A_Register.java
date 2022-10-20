@@ -47,7 +47,6 @@ public class A_Register extends AppCompatActivity implements Constants {
         email = et_email.getText().toString();
         telefone = et_telefone.getText().toString();
         password = et_password.getText().toString();
-
         dataInstance.getDataUser().add(new User(nome,email,telefone,password));
 
         Intent it_aHome = new Intent();
