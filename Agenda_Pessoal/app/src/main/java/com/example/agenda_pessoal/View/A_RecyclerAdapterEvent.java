@@ -20,11 +20,12 @@ public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapt
     private ArrayList<Task> task = new ArrayList<Task>();
     private Context context;
 
+    //Mostra os eventos na RecyclerView
     public A_RecyclerAdapterEvent(ArrayList<Task> task, Context context){
         this.context = context;
         for (int i = 0; i < task.size(); i++) {
             Task item = task.get(i);
-            if (!item.isEvent()){
+            if (item.isEvent()){
                 this.task.add(item);
             }
         }
@@ -43,13 +44,6 @@ public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapt
         Task item = task.get(position);
         holder.bind(item);
         holder.cardView.setOnClickListener(view -> {});
-
-        /*holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });*/
     }
 
     @Override
@@ -75,7 +69,7 @@ public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapt
         public void bind(Task item){
             titleEvent.setText(item.getTitle());
             descriptionEvent.setText(item.description);
-            timeEvent.setText(" ");
+            timeEvent.setText(item.event.date[0] +"\n"+ item.event.date[1]);
         }
 
 

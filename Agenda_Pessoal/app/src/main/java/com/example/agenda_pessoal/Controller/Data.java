@@ -62,14 +62,22 @@ public class Data implements Parcelable {
             dataRelationship.add(updatedDataRelationship.get(i));
 
     }
+
+    private User testUser(String name, String email, String phone, String password){
+        User user = new User();
+        user.NewUser(name,email,phone, password);
+        return user;
+    }
     public void initializeValues(){
-        dataUser.add(new User("Lucas","teste@teste","1298875748"
+        dataUser.add(testUser("Lucas","teste@teste.com.br","1298875748"
                 ,"123"));
-        dataUser.add(new User("Leandro","teste2@teste","4845456484"
+        dataUser.add(testUser("Leandro","teste2@teste.com.br","4845456484"
                 ,"123"));
         dataTask.add(new Task("Dor e sofrimento",0));
         dataTask.get(0).description = "Na casinha";
+        dataTask.get(0).createEvent(new String[] {"22/10/2022", "06:00"});
         dataTask.add(new Task("Trabalho Enari",1));
+        dataTask.get(1).createEvent(new String[] {"23/10/2022", "06:00"});
         dataRelationship.add(new Relationship(0,1));
         dataRelationship.add(new Relationship(1,0));
 

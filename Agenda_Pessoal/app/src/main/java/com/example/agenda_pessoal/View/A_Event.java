@@ -19,6 +19,10 @@ import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -40,7 +44,9 @@ public class A_Event extends AppCompatActivity implements Constants {
         dataInstance = getIntent().getExtras().getParcelable("Data");
 
         tv_date = findViewById(R.id.tv_date);
+        String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
+        tv_date.setText(localDate);
 
         recyclerView = findViewById(R.id.recyclerView_Compromisso);
         recyclerView.setLayoutManager(new LinearLayoutManager(A_Event.this)); // Como o RecyclerView será mostrado na tela

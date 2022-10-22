@@ -8,14 +8,14 @@ import java.util.Date;
 
 
 public class Event implements Parcelable {
-    public Date date;
+    public String[] date;
 
-    public Event() {
-        this.date = new Date();
+    public Event(String[] dateTime) {
+        date = dateTime;
     }
 
     protected Event(Parcel in) {
-        date = (java.util.Date) in.readSerializable();
+        date = in.createStringArray();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -30,13 +30,14 @@ public class Event implements Parcelable {
         }
     };
 
-    public String serialize(){
+    public String serialize() {
         String serialize;
         serialize = "{" +
                 "\"Date\":" + "\"" + date.toString() + "\"" + // serialize = date.toString();
                 "}";
         return serialize;
     }
+
 
     @Override
     public int describeContents() {
@@ -45,6 +46,6 @@ public class Event implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeSerializable(date);
+        parcel.writeStringArray(date);
     }
 }

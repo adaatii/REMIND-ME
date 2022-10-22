@@ -37,16 +37,19 @@ public class Task implements Parcelable {
         }
     };
 
-    public boolean getOwner(int id){return (owner == id);} //verifica se é o dono
+
     public boolean isEvent(){return (event != null);} //verifica se é um evento
 
-    public String getTitle() {
-        return title;
+    //Getters
+    public String getTitle() {return title;}
+    public boolean getOwner(int id){return (owner == id);} //verifica se é o dono
+    //Setters
+    public void setTitle(String title) {this.title = title;}
+
+    public void createEvent(String[] dataTime){
+        this.event = new Event(dataTime);
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String serialize(){
         String serialize;

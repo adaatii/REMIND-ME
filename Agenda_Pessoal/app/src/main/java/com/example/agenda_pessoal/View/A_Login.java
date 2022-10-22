@@ -21,7 +21,7 @@ public class A_Login extends AppCompatActivity implements Constants {
     Data dataInstance;
     EditText id_login_email;
     EditText id_login_password;
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +41,42 @@ public class A_Login extends AppCompatActivity implements Constants {
         String log_email = id_login_email.getText().toString();
         String log_password = id_login_password.getText().toString();
 
-        Intent it_aEvent = new Intent(this, A_Event.class);
-        it_aEvent.putExtra("Data", dataInstance);
-        startActivityForResult(it_aEvent, EVENT_ACTIVITY_REQUEST_CODE);
+        User loginUser = new User();
+
+        if (loginUser.authenticateEmail(log_email)){
+            boolean emailIsUsed = false;
+            int currentUser = 0;
+            for (int i = 0; i < dataInstance.getDataUser().size(); i++) {
+                if (dataInstance.getDataUser().get(i).getEmail().equals(log_email)) {
+                    emailIsUsed = true;
+                    currentUser = i;
+                }
+            }
+
+            boolean currect;
+            currect = emailIsUsed && loginUser.validatePassword(dataInstance.getDataUser().get(currentUser).getPassword(), log_password);
+            if (currect) {
+                Intent it_aEvent = new Intent(this, A_Event.class);
+                it_aEvent.putExtra("Data", dataInstance);
+                startActivityForResult(it_aEvent, EVENT_ACTIVITY_REQUEST_CODE);
+                //intent.putExtra("UserId", currentUser);
+                finish();
+            } else {
+                // Esse email ou senha incorretos
+                //alert(getString(R.string.informationIncorrect));
+                Log.d("OperLog" , "Email ou senha incorretos");
+                Log.d("OperSerialize" , dataInstance.serialize());
+            }
+
+
+        }else{
+            // email invalido
+            //alert(getString(R.string.invalidEmail));
+            Log.d("OperLog" , "Email invalido");
+            Log.d("OperSerialize" , dataInstance.serialize());
+        }
+
+
     }
 
     @Override
