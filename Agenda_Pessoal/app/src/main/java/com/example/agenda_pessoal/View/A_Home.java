@@ -61,5 +61,11 @@ public class A_Home extends AppCompatActivity implements Constants {
                 startActivityForResult(it_aLogin, LOGIN_ACTIVITY_REQUEST_CODE);
             }
         }
+        if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE){
+            if (resultCode == RESULT_OK){
+                dataInstance.Update(data.getExtras().getParcelable("Data"));
+                Log.d("OpenSerialize", dataInstance.serialize());
+            }
+        }
     }
 }

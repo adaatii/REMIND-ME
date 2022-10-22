@@ -1,6 +1,5 @@
 package com.example.agenda_pessoal.View;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +14,14 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
+import com.example.agenda_pessoal.Controller.Task;
+import com.example.agenda_pessoal.Model.Adapter.RecyclerAdapterEvent;
 import com.example.agenda_pessoal.Model.Constants;
+import com.example.agenda_pessoal.Model.Sort.TaskTree;
 import com.example.agenda_pessoal.R;
 
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,11 +29,10 @@ import java.util.Calendar;
 public class A_Event extends AppCompatActivity implements Constants {
 
     private RecyclerView recyclerView;
-    private A_RecyclerAdapterEvent adapterEvent;
+    private RecyclerAdapterEvent adapterEvent;
     private Data dataInstance;
-    private TextView tv_date;
+    private TextView tv_date, tv_event;
     private int year, month, day;
-
 
 
     @Override
@@ -44,6 +43,7 @@ public class A_Event extends AppCompatActivity implements Constants {
         dataInstance = getIntent().getExtras().getParcelable("Data");
 
         tv_date = findViewById(R.id.tv_date);
+        tv_event = findViewById(R.id.tv_Event);
         String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         tv_date.setText(localDate);
@@ -51,16 +51,33 @@ public class A_Event extends AppCompatActivity implements Constants {
         recyclerView = findViewById(R.id.recyclerView_Compromisso);
         recyclerView.setLayoutManager(new LinearLayoutManager(A_Event.this)); // Como o RecyclerView será mostrado na tela
 
-        adapterEvent = new A_RecyclerAdapterEvent(dataInstance.getDataTask(), A_Event.this);
-        recyclerView.setAdapter(adapterEvent);
+        ArrayList<Task> task = dataInstance.getDataTask();
+        TaskTree taskTree = new TaskTree();
+        // Ordenação do TaskData (dataInstance.getDataTask())
+        for (int i = 0; i < task.size(); i++) {
+            Task item = task.get(i);
+            if (item.isEvent()) {
+                taskTree.add(i, item.event.date, localDate);
+            }
+        }
+
+        // Set a visibilidade do texto Não Há compromissos
+        if (taskTree.sort().size() > 0) {
+            adapterEvent = new RecyclerAdapterEvent(dataInstance.getDataTask(), taskTree.sort(), A_Event.this);
+            recyclerView.setAdapter(adapterEvent);
+            tv_event.setText("Compromissos");
+        } else {
+            tv_event.setText("Não há Compromissos");
+        }
     }
+
     public void openNewEventScreen(View v) {
         Intent it_aNewEvent = new Intent(this, A_NewEvent.class);
         it_aNewEvent.putExtra("Data", dataInstance);
         startActivityForResult(it_aNewEvent, NEW_EVENT_ACTIVITY_REQUEST_CODE);
     }
 
-    public void datePicker(View view){
+    public void datePicker(View view) {
         final Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -68,9 +85,28 @@ public class A_Event extends AppCompatActivity implements Constants {
         DatePickerDialog dialog = new DatePickerDialog(A_Event.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                month = month+1;
-                String date = dayOfMonth+"/"+month+"/"+year;
+                month = month + 1;
+                String date = dayOfMonth + "/" + month + "/" + year;
                 tv_date.setText(date);
+
+                ArrayList<Task> task = dataInstance.getDataTask();
+                TaskTree taskTree = new TaskTree();
+                // Ordenação do TaskData (dataInstance.getDataTask())
+                for (int i = 0; i < task.size(); i++) {
+                    Task item = task.get(i);
+                    if (item.isEvent()) {
+                        taskTree.add(i, item.event.date, date);
+                    }
+                }
+
+                adapterEvent.reloadView(dataInstance.getDataTask(), taskTree.sort());
+                // Set a visibilidade do texto Não Há compromissos
+                if (taskTree.sort().size() == 0) {
+                    tv_event.setText("Não há Compromissos");
+                }else {
+                    tv_event.setText("Compromissos");
+                }
+
             }
         }, year, month, day);
         dialog.show();
@@ -82,19 +118,33 @@ public class A_Event extends AppCompatActivity implements Constants {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("resultCode", Integer.toString(resultCode));
-        if (requestCode == REGISTER_ACTIVITY_REQUEST_CODE){
-            if (resultCode == RESULT_FIRST_USER){
-                Data dataSerialize = data.getExtras().getParcelable("NewUser");
-                Log.d("OpenSerialize", dataSerialize.serialize());
-                dataInstance.Update(data.getExtras().getParcelable("NewUser"));
-                Intent it_aLogin = new Intent(this, A_Login.class);
-                it_aLogin.putExtra("Data", dataInstance);
-                startActivityForResult(it_aLogin, LOGIN_ACTIVITY_REQUEST_CODE);
-            }else if(resultCode == RESULT_OK){
-                Intent it_aLogin = new Intent(this, A_Login.class);
-                it_aLogin.putExtra("Data", dataInstance);
-                startActivityForResult(it_aLogin, LOGIN_ACTIVITY_REQUEST_CODE);
+
+        String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        tv_date.setText(localDate);
+
+        ArrayList<Task> task = dataInstance.getDataTask();
+        TaskTree taskTree = new TaskTree();
+        // Ordenação do TaskData (dataInstance.getDataTask())
+        for (int i = 0; i < task.size(); i++) {
+            Task item = task.get(i);
+            if (item.isEvent()) {
+                taskTree.add(i, item.event.date, localDate);
             }
+        }
+
+        adapterEvent.reloadView(dataInstance.getDataTask(), taskTree.sort());
+        // Set a visibilidade do texto Não Há compromissos
+        if (taskTree.sort().size() == 0) {
+            tv_event.setText("Não há Compromissos");
+        }else {
+            tv_event.setText("Compromissos");
+        }
+
+        if (requestCode == NEW_EVENT_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_FIRST_USER) {
+                dataInstance.Update(data.getExtras().getParcelable("Data"));
+            }
+
         }
     }
 

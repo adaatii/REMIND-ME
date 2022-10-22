@@ -10,6 +10,7 @@ public interface Constants {
     int NEW_EVENT_ACTIVITY_REQUEST_CODE = 3;
 
 
+
     //RESULTS
     int RESULT_DESTROY = 2;
 

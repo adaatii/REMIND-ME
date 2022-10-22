@@ -66,11 +66,27 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:id="@+id/linear_layout_Event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_linear_layout"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_Event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Não há Compromissos"
+            android:textSize="20dp" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_Compromisso"
         android:layout_width="match_parent"
-        android:layout_height="680dp"
-        android:layout_below="@+id/top_linear_layout"
+        android:layout_height="655dp"
+        android:layout_below="@+id/linear_layout_Event"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,17 +99,8 @@
         android:layout_height="70dp"
         android:layout_below="@id/recyclerView_Compromisso"
         android:background="@color/azul"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_ScreenEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/azul"
-            app:icon="@drawable/ic_baseline_home_24"
-            app:iconGravity="textEnd"
-            tools:ignore="SpeakableTextPresentCheck" />
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_ScreenTask"

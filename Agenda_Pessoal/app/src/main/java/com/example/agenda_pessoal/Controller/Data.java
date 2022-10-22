@@ -68,16 +68,41 @@ public class Data implements Parcelable {
         user.NewUser(name,email,phone, password);
         return user;
     }
+    private Task testEvent(String title, int owner,String description, String[] dateTime){
+        Task event = new Task(title, owner);
+        event.description = description;
+        event.createEvent(dateTime);
+        return event;
+    }
+    private Task testTask(String title, int owner,String description){
+        Task task = new Task(title, owner);
+        task.description = description;
+        return task;
+    }
     public void initializeValues(){
-        dataUser.add(testUser("Lucas","teste@teste.com.br","1298875748"
-                ,"123"));
-        dataUser.add(testUser("Leandro","teste2@teste.com.br","4845456484"
-                ,"123"));
-        dataTask.add(new Task("Dor e sofrimento",0));
-        dataTask.get(0).description = "Na casinha";
-        dataTask.get(0).createEvent(new String[] {"22/10/2022", "06:00"});
-        dataTask.add(new Task("Trabalho Enari",1));
-        dataTask.get(1).createEvent(new String[] {"23/10/2022", "06:00"});
+        dataUser.add(testUser("Lucas","teste@teste.com.br","1298875748","123"));
+        dataUser.add(testUser("Leandro","teste2@teste.com.br","4845456484","123"));
+        dataTask.add(testEvent(
+                "Dor e sofrimento",
+                0,
+                "Na casinha",
+                new String[] {"22/10/2022", "06:00"}));
+        dataTask.add(testEvent(
+                "Trabalho Enari",
+                1,
+                "",
+                new String[] {"23/10/2022", "06:00"}));
+        dataTask.add(testEvent(
+                "Acelera",
+                0,
+                "Fatec Cruzeiro",
+                new String[] {"23/10/2022", "08:00"}));
+        dataTask.add(testEvent(
+                "Reunião no Discord",
+                1,
+                "trabalho de ESII",
+                new String[] {"05/08/2022", "14:37"}));
+
         dataRelationship.add(new Relationship(0,1));
         dataRelationship.add(new Relationship(1,0));
 

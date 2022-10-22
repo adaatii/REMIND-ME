@@ -58,6 +58,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName|textEmailAddress"
                 android:minHeight="48dp"
+                android:text="teste@teste.com.br"
                 tools:ignore="SpeakableTextPresentCheck,TextContrastCheck,TextContrastCheck" />
 
 
@@ -73,6 +74,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
+                android:text="123"
                 tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
 

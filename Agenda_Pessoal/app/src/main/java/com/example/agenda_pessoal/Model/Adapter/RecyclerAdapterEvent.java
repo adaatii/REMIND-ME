@@ -1,10 +1,12 @@
-package com.example.agenda_pessoal.View;
+package com.example.agenda_pessoal.Model.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -15,20 +17,20 @@ import com.example.agenda_pessoal.R;
 
 import java.util.ArrayList;
 
-public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapterEvent.CompromissoViewHolder> {
+public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEvent.CompromissoViewHolder> {
 
     private ArrayList<Task> task = new ArrayList<Task>();
     private Context context;
+    private ArrayList<Integer> sortedId = new ArrayList<>();
 
     //Mostra os eventos na RecyclerView
-    public A_RecyclerAdapterEvent(ArrayList<Task> task, Context context){
+    public RecyclerAdapterEvent(ArrayList<Task> task, ArrayList<Integer> id, Context context){
         this.context = context;
-        for (int i = 0; i < task.size(); i++) {
-            Task item = task.get(i);
-            if (item.isEvent()){
-                this.task.add(item);
-            }
+        //Pega somente dos Id's que já foram filtrados e ordenado usando o taskTree (coloca em this.task)
+        for (Integer i: id) {
+            this.task.add(task.get(i));
         }
+        sortedId.addAll(id);
     }
 
     @NonNull
@@ -40,15 +42,32 @@ public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CompromissoViewHolder holder, int position){ // mostrara o data
+    public void onBindViewHolder(@NonNull CompromissoViewHolder holder,  int position){ // mostrara o data
         Task item = task.get(position);
         holder.bind(item);
-        holder.cardView.setOnClickListener(view -> {});
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Update de Evento;
+            }
+        });
     }
 
     @Override
     public int getItemCount() { //a quantidade de informação que será mostrada na tela
         return task.size();
+    }
+
+    public void reloadView(ArrayList<Task> task, ArrayList<Integer> id){
+
+        this.sortedId.clear();
+        this.task.clear();
+        //Pega somente dos Id's que já foram filtrados e ordenado usando o taskTree (coloca em this.task)
+        for (Integer i: id) {
+            this.task.add(task.get(i));
+        }
+        sortedId.addAll(id);
+        notifyDataSetChanged();
     }
 
     public class CompromissoViewHolder extends RecyclerView.ViewHolder {
@@ -69,7 +88,7 @@ public class A_RecyclerAdapterEvent extends RecyclerView.Adapter<A_RecyclerAdapt
         public void bind(Task item){
             titleEvent.setText(item.getTitle());
             descriptionEvent.setText(item.description);
-            timeEvent.setText(item.event.date[0] +"\n"+ item.event.date[1]);
+            timeEvent.setText(item.event.date[1]);
         }
 
 

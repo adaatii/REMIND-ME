@@ -49,17 +49,17 @@ public class TaskNode {
                     0
 
             );
-            check = firstTime.isAfter(secondTime);
+            check = !firstTime.isAfter(secondTime);
         }
 
         // check = True vai para direita oque significa que valor é maior
         // check = False vai para esquerda oque significa que valor é menor
         if (check) {
-            if (right != null) right.add(idTask, dateTime);
-            else right = new TaskNode(idTask, dateTime);
+            if (right != null) right.add(idTask, newDateTime);
+            else right = new TaskNode(idTask, newDateTime);
         } else {
-            if (left != null) left.add(idTask, dateTime);
-            else left = new TaskNode(idTask, dateTime);
+            if (left != null) left.add(idTask, newDateTime);
+            else left = new TaskNode(idTask, newDateTime);
         }
     }
 

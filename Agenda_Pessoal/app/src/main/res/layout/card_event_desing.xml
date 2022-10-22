@@ -22,14 +22,12 @@
             android:layout_width="match_parent"
             android:layout_height="75dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/ImageVIew_compromisso"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/fundo_branco"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp"
+                android:src="@drawable/alert_warning_signal_icon_131571"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +36,7 @@
                 android:id="@+id/tv_tituloCompromisso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="33dp"
+                android:layout_marginStart="12dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="24sp"
@@ -50,7 +48,7 @@
                 android:id="@+id/tv_descricaoCompromisso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="34dp"
+                android:layout_marginStart="12dp"
                 android:text="TextView"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +59,7 @@
                 android:id="@+id/tv_horaCompromisso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="28dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
