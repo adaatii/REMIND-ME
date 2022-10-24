@@ -67,6 +67,8 @@ public class A_Event extends AppCompatActivity implements Constants {
             recyclerView.setAdapter(adapterEvent);
             tv_event.setText("Compromissos");
         } else {
+            adapterEvent = new RecyclerAdapterEvent(dataInstance.getDataTask(), taskTree.sort(), A_Event.this);
+            recyclerView.setAdapter(adapterEvent);
             tv_event.setText("Não há Compromissos");
         }
     }
@@ -103,7 +105,7 @@ public class A_Event extends AppCompatActivity implements Constants {
                 // Set a visibilidade do texto Não Há compromissos
                 if (taskTree.sort().size() == 0) {
                     tv_event.setText("Não há Compromissos");
-                }else {
+                } else {
                     tv_event.setText("Compromissos");
                 }
 
@@ -132,13 +134,15 @@ public class A_Event extends AppCompatActivity implements Constants {
             }
         }
 
+
         adapterEvent.reloadView(dataInstance.getDataTask(), taskTree.sort());
         // Set a visibilidade do texto Não Há compromissos
         if (taskTree.sort().size() == 0) {
             tv_event.setText("Não há Compromissos");
-        }else {
+        } else {
             tv_event.setText("Compromissos");
         }
+
 
         if (requestCode == NEW_EVENT_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_FIRST_USER) {
@@ -146,6 +150,7 @@ public class A_Event extends AppCompatActivity implements Constants {
             }
 
         }
+
     }
 
 }
