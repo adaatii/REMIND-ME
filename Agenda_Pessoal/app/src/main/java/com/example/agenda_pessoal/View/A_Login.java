@@ -30,7 +30,7 @@ public class A_Login extends AppCompatActivity implements Constants {
         dataInstance = getIntent().getExtras().getParcelable("Data");
         Log.d("OpenSerialize" , dataInstance.serialize());
         // Importantes
-        getWindow().setStatusBarColor(Color.rgb(46, 113, 212));
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
         id_login_email = findViewById(R.id.et_login_email);
         id_login_password = findViewById(R.id.et_login_password);
@@ -76,12 +76,11 @@ public class A_Login extends AppCompatActivity implements Constants {
             Log.d("OperSerialize" , dataInstance.serialize());
         }
 
-
     }
 
     public void returnToHome(View v){
         Intent it_aHome = new Intent();
-        setResult(RESULT_DESTROY, it_aHome);
+        setResult(RESULT_OK, it_aHome);
         finish();
     }
 
@@ -91,14 +90,10 @@ public class A_Login extends AppCompatActivity implements Constants {
         Log.d("resultCode", Integer.toString(resultCode));
         if (requestCode == EVENT_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_FIRST_USER){
-                Intent it_aHome = new Intent();
-                it_aHome.putExtra("Data", dataInstance);
-                setResult(RESULT_FIRST_USER, it_aHome);
-                finish();
-            }else if(resultCode == RESULT_OK){
-                Intent it_aLogin = new Intent(this, A_Login.class);
-                it_aLogin.putExtra("Data", dataInstance);
-                startActivityForResult(it_aLogin, LOGIN_ACTIVITY_REQUEST_CODE);
+                Data dataSerialize = data.getExtras().getParcelable("Data");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("Data"));
+
             }
         }
     }

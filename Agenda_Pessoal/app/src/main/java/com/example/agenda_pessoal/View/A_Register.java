@@ -3,6 +3,7 @@ package com.example.agenda_pessoal.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,7 @@ public class A_Register extends AppCompatActivity implements Constants {
         setContentView(R.layout.activity_register);
 
         // Importantes
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
 

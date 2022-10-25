@@ -24,6 +24,7 @@
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/azul"
+                android:onClick="returnToHome"
                 app:icon="@drawable/ic_baseline_arrow_back_24"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>

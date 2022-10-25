@@ -74,6 +74,7 @@ public class Data implements Parcelable {
         event.createEvent(dateTime);
         return event;
     }
+
     private Task testTask(String title, int owner,String description){
         Task task = new Task(title, owner);
         task.description = description;
@@ -97,12 +98,10 @@ public class Data implements Parcelable {
                 0,
                 "Fatec Cruzeiro",
                 new String[] {"23/10/2022", "08:00"}));
-        dataTask.add(testEvent(
+        dataTask.add(testTask(
                 "Reunião no Discord",
                 1,
-                "trabalho de ESII",
-                new String[] {"23/10/2022", "14:37"}));
-
+                "trabalho de ESII"));
         dataRelationship.add(new Relationship(0,1));
         dataRelationship.add(new Relationship(1,0));
 

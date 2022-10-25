@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -13,14 +14,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.agenda_pessoal.Controller.Data;
+import com.example.agenda_pessoal.Controller.Task;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class A_NewEvent extends AppCompatActivity {
+public class A_NewEvent extends AppCompatActivity implements Constants {
 
     private TextView tv_dateNewEvent, tv_timeNewEvent;
+    private EditText titleNewEvent, descriptionNewEvent;
     private int year, month, day;
     Data dataInstance;
 
@@ -28,11 +32,14 @@ public class A_NewEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
 
         tv_dateNewEvent = findViewById(R.id.et_dateNewEvent);
         tv_timeNewEvent = findViewById(R.id.et_timeNewEvent);
+        titleNewEvent = findViewById(R.id.et_titleNewEvent);
+        descriptionNewEvent = findViewById(R.id.et_descriptionNewEvent);
 
         tv_dateNewEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,5 +90,25 @@ public class A_NewEvent extends AppCompatActivity {
         timePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
     }
 
+    public void createNewEvent(View view){
+        String date = tv_dateNewEvent.getText().toString();
+        String time = tv_timeNewEvent.getText().toString();
+        String title = titleNewEvent.getText().toString();
+        Task newEvent = new Task(title, 0);
+        newEvent.description = descriptionNewEvent.getText().toString();
+        newEvent.createEvent(new String[] {date, time});
+        dataInstance.getDataTask().add(newEvent);
+        Intent it_aEvent = new Intent();
+        it_aEvent.putExtra("NewEvent", dataInstance);
+        setResult(RESULT_FIRST_USER, it_aEvent);
+        finish();
+
+    }
+
+    public void returnToEvent(View view){
+        Intent it_aEvent = new Intent();
+        setResult(RESULT_DESTROY, it_aEvent);
+        finish();
+    }
 
 }

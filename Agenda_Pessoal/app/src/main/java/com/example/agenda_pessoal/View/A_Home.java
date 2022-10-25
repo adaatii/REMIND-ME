@@ -21,7 +21,7 @@ public class A_Home extends AppCompatActivity implements Constants {
         setContentView(R.layout.activity_home);
 
         // Importantes
-        getWindow().setStatusBarColor(Color.rgb(46, 113, 212));
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
         Log.d("OpenSerialize", dataInstance.serialize());
 
 
@@ -63,7 +63,6 @@ public class A_Home extends AppCompatActivity implements Constants {
         }
         if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK){
-                dataInstance.Update(data.getExtras().getParcelable("Data"));
                 Log.d("OpenSerialize", dataInstance.serialize());
             }
         }

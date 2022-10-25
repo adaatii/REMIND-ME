@@ -39,6 +39,7 @@ public class A_Event extends AppCompatActivity implements Constants {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
 
@@ -60,15 +61,12 @@ public class A_Event extends AppCompatActivity implements Constants {
                 taskTree.add(i, item.event.date, localDate);
             }
         }
-
+        adapterEvent = new RecyclerAdapterEvent(dataInstance.getDataTask(), taskTree.sort(), A_Event.this);
+        recyclerView.setAdapter(adapterEvent);
         // Set a visibilidade do texto Não Há compromissos
         if (taskTree.sort().size() > 0) {
-            adapterEvent = new RecyclerAdapterEvent(dataInstance.getDataTask(), taskTree.sort(), A_Event.this);
-            recyclerView.setAdapter(adapterEvent);
             tv_event.setText("Compromissos");
         } else {
-            adapterEvent = new RecyclerAdapterEvent(dataInstance.getDataTask(), taskTree.sort(), A_Event.this);
-            recyclerView.setAdapter(adapterEvent);
             tv_event.setText("Não há Compromissos");
         }
     }
@@ -116,37 +114,42 @@ public class A_Event extends AppCompatActivity implements Constants {
         dialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
     }
 
+    public void returnToLogin(View view){
+        Intent it_aLogin = new Intent();
+        it_aLogin.putExtra("Data", dataInstance);
+        setResult(RESULT_FIRST_USER, it_aLogin);
+        finish();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("resultCode", Integer.toString(resultCode));
-
-        String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        tv_date.setText(localDate);
-
-        ArrayList<Task> task = dataInstance.getDataTask();
-        TaskTree taskTree = new TaskTree();
-        // Ordenação do TaskData (dataInstance.getDataTask())
-        for (int i = 0; i < task.size(); i++) {
-            Task item = task.get(i);
-            if (item.isEvent()) {
-                taskTree.add(i, item.event.date, localDate);
-            }
-        }
-
-
-        adapterEvent.reloadView(dataInstance.getDataTask(), taskTree.sort());
-        // Set a visibilidade do texto Não Há compromissos
-        if (taskTree.sort().size() == 0) {
-            tv_event.setText("Não há Compromissos");
-        } else {
-            tv_event.setText("Compromissos");
-        }
-
-
         if (requestCode == NEW_EVENT_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_FIRST_USER) {
-                dataInstance.Update(data.getExtras().getParcelable("Data"));
+                Data dataSerialize = data.getExtras().getParcelable("NewEvent");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("NewEvent"));
+                String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                tv_date.setText(localDate);
+
+                ArrayList<Task> task = dataInstance.getDataTask();
+                TaskTree taskTree = new TaskTree();
+                // Ordenação do TaskData (dataInstance.getDataTask())
+                for (int i = 0; i < task.size(); i++) {
+                    Task item = task.get(i);
+                    if (item.isEvent()) {
+                        taskTree.add(i, item.event.date, localDate);
+                    }
+                }
+
+                adapterEvent.reloadView(dataInstance.getDataTask(), taskTree.sort());
+                // Set a visibilidade do texto Não Há compromissos
+                if (taskTree.sort().size() == 0) {
+                    tv_event.setText("Não há Compromissos");
+                } else {
+                    tv_event.setText("Compromissos");
+                }
             }
 
         }
