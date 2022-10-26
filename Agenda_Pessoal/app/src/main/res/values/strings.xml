@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Agenda_Pessoal</string>
     <string name="nome_app" translatable="false">Nome da Aplicação</string>
-    <string name="nome" translatable="false">Nome</string>
-    <string name="telefone" translatable="false">Telefone</string>
-    <string name="email" translatable="false">Email</string>
-    <string name="senha" translatable="false">Senha</string>
-    <string name="confirme_a_senha" translatable="false">Confirme a Senha</string>
+    <string name="nome" translatable="false">Nome *</string>
+    <string name="telefone" translatable="false">Telefone *</string>
+    <string name="email" translatable="false">Email *</string>
+    <string name="senha" translatable="false">Senha *</string>
+    <string name="confirme_a_senha" translatable="false">Confirme a Senha *</string>
     <string name="cadastrar" translatable="false">Cadastrar</string>
     <string name="entrar" translatable="false">Entrar</string>
     <string name="realize_seu_login" translatable="false">Realize seu login!</string>

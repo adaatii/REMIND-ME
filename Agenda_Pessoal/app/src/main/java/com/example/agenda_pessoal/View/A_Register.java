@@ -62,36 +62,37 @@ public class A_Register extends AppCompatActivity implements Constants {
         confPassword = et_confPassword.getText().toString();
         User user = new User();
 
-        if (user.authenticateEmail(email)){
-            boolean emailUsed = false;
-            for (int i = 0; i < dataInstance.getDataUser().size(); i++) {
-                if (dataInstance.getDataUser().get(i).getEmail().equals(email)){
-                    emailUsed = true;
+        if (nome.isEmpty() || email.isEmpty() || telefone.isEmpty()
+                || password.isEmpty() || confPassword.isEmpty()){
+            alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
+        }else{
+            if (user.authenticateEmail(email)){
+                boolean emailUsed = false;
+                for (int i = 0; i < dataInstance.getDataUser().size(); i++) {
+                    if (dataInstance.getDataUser().get(i).getEmail().equals(email)){
+                        emailUsed = true;
+                    }
                 }
-            }
-            if (!emailUsed){
-                if (user.validatePassword(password, confPassword)){
-                    user.NewUser(nome,email,telefone,password);
-                    dataInstance.getDataUser().add(user);
-                    Intent it_aHome = new Intent();
-                    it_aHome.putExtra("NewUser", dataInstance);
-                    setResult(RESULT_FIRST_USER, it_aHome);
-                    finish();
+                if (!emailUsed){
+                    if (user.validatePassword(password, confPassword)){
+                        user.NewUser(nome,email,telefone,password);
+                        dataInstance.getDataUser().add(user);
+                        Intent it_aHome = new Intent();
+                        it_aHome.putExtra("NewUser", dataInstance);
+                        setResult(RESULT_FIRST_USER, it_aHome);
+                        finish();
+                    }else{
+                        //Senhas não conferem
+                        alert("Cadastro", "Senha e confirmação de senha não conferem");
+                    }
                 }else{
-                    //Senhas não conferem
-                    alert("Cadastro", "Senha e confirmação de senha não conferem");
+                    alert("Cadastro", "Email já possui cadastro");
                 }
             }else{
-                alert("Cadastro", "Email já possui cadastro");
+                //Email inválido
+                alert("Cadastro", "Email Inválido");
             }
-        }else{
-            //Email inválido
-            alert("Cadastro", "Email Inválido");
         }
-
-
-
-
     }
 
     public void abrirLogin(View v){

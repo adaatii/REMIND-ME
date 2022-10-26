@@ -8,7 +8,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_icon_reminder_foreground"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_icon_reminder_foreground"
+        android:roundIcon="@mipmap/ic_icon_reminder_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Agenda_Pessoal"
         tools:targetApi="31">

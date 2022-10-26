@@ -104,7 +104,7 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
         String title = titleNewEvent.getText().toString();
         if (title.isEmpty() || date.isEmpty() || time.isEmpty()){
             //Title não deve estar vazio
-            alert("Campos Obrigatórios", "Título, data e hora são campos obrigatórios");
+            alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else{
             Task newEvent = new Task(title, 0);
             newEvent.description = descriptionNewEvent.getText().toString();
