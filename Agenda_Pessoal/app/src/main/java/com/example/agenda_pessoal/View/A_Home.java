@@ -66,5 +66,6 @@ public class A_Home extends AppCompatActivity implements Constants {
                 Log.d("OpenSerialize", dataInstance.serialize());
             }
         }
+
     }
 }

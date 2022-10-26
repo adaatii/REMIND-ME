@@ -115,9 +115,9 @@ public class A_Event extends AppCompatActivity implements Constants {
     }
 
     public void returnToLogin(View view){
-        Intent it_aLogin = new Intent();
-        it_aLogin.putExtra("Data", dataInstance);
-        setResult(RESULT_FIRST_USER, it_aLogin);
+        Intent it_aHome = new Intent();
+        it_aHome.putExtra("Data", dataInstance);
+        setResult(RESULT_OK, it_aHome);
         finish();
     }
 

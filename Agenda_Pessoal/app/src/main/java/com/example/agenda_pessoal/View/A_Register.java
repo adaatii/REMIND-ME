@@ -1,5 +1,6 @@
 package com.example.agenda_pessoal.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,11 +17,12 @@ import com.example.agenda_pessoal.R;
 
 public class A_Register extends AppCompatActivity implements Constants {
 
-    String nome, email, telefone, password;
+    String nome, email, telefone, password, confPassword;
     EditText et_nome;
     EditText et_email;
     EditText et_telefone;
     EditText et_password;
+    EditText et_confPassword;
     Button btn_cadastro;
     Button btn_voltar;
     Data dataInstance;
@@ -42,6 +44,14 @@ public class A_Register extends AppCompatActivity implements Constants {
         et_email=findViewById(R.id.et_email);
         et_telefone=findViewById(R.id.et_phone);
         et_password=findViewById(R.id.et_password);
+        et_confPassword=findViewById(R.id.et_confPassword);
+
+    }
+    public void alert(String title, String message){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("OK", null);
+        alertDialog.show();
+
     }
 
     public void registerUser(View v) {
@@ -49,14 +59,39 @@ public class A_Register extends AppCompatActivity implements Constants {
         email = et_email.getText().toString();
         telefone = et_telefone.getText().toString();
         password = et_password.getText().toString();
+        confPassword = et_confPassword.getText().toString();
         User user = new User();
-        user.NewUser(nome,email,telefone,password);
-        dataInstance.getDataUser().add(user);
 
-        Intent it_aHome = new Intent();
-        it_aHome.putExtra("NewUser", dataInstance);
-        setResult(RESULT_FIRST_USER, it_aHome);
-        finish();
+        if (user.authenticateEmail(email)){
+            boolean emailUsed = false;
+            for (int i = 0; i < dataInstance.getDataUser().size(); i++) {
+                if (dataInstance.getDataUser().get(i).getEmail().equals(email)){
+                    emailUsed = true;
+                }
+            }
+            if (!emailUsed){
+                if (user.validatePassword(password, confPassword)){
+                    user.NewUser(nome,email,telefone,password);
+                    dataInstance.getDataUser().add(user);
+                    Intent it_aHome = new Intent();
+                    it_aHome.putExtra("NewUser", dataInstance);
+                    setResult(RESULT_FIRST_USER, it_aHome);
+                    finish();
+                }else{
+                    //Senhas não conferem
+                    alert("Cadastro", "Senha e confirmação de senha não conferem");
+                }
+            }else{
+                alert("Cadastro", "Email já possui cadastro");
+            }
+        }else{
+            //Email inválido
+            alert("Cadastro", "Email Inválido");
+        }
+
+
+
+
     }
 
     public void abrirLogin(View v){

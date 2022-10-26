@@ -1,5 +1,6 @@
 package com.example.agenda_pessoal.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -57,6 +58,13 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
 
     }
 
+    public void alert(String title, String message){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("OK", null);
+        alertDialog.show();
+    }
+
+
     public void dataPickerNewEvent() {
         final Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -94,15 +102,19 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
         String date = tv_dateNewEvent.getText().toString();
         String time = tv_timeNewEvent.getText().toString();
         String title = titleNewEvent.getText().toString();
-        Task newEvent = new Task(title, 0);
-        newEvent.description = descriptionNewEvent.getText().toString();
-        newEvent.createEvent(new String[] {date, time});
-        dataInstance.getDataTask().add(newEvent);
-        Intent it_aEvent = new Intent();
-        it_aEvent.putExtra("NewEvent", dataInstance);
-        setResult(RESULT_FIRST_USER, it_aEvent);
-        finish();
-
+        if (title.isEmpty() || date.isEmpty() || time.isEmpty()){
+            //Title não deve estar vazio
+            alert("Campos Obrigatórios", "Título, data e hora são campos obrigatórios");
+        }else{
+            Task newEvent = new Task(title, 0);
+            newEvent.description = descriptionNewEvent.getText().toString();
+            newEvent.createEvent(new String[] {date, time});
+            dataInstance.getDataTask().add(newEvent);
+            Intent it_aEvent = new Intent();
+            it_aEvent.putExtra("NewEvent", dataInstance);
+            setResult(RESULT_FIRST_USER, it_aEvent);
+            finish();
+        }
     }
 
     public void returnToEvent(View view){

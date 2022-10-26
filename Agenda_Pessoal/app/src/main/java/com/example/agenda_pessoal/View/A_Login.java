@@ -1,5 +1,6 @@
 package com.example.agenda_pessoal.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -37,6 +38,12 @@ public class A_Login extends AppCompatActivity implements Constants {
 
     }
 
+    public void alert(String title, String message){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("OK", null);
+        alertDialog.show();
+    }
+
     public void openEvent(View v){
         String log_email = id_login_email.getText().toString();
         String log_password = id_login_password.getText().toString();
@@ -58,12 +65,13 @@ public class A_Login extends AppCompatActivity implements Constants {
             if (currect) {
                 Intent it_aEvent = new Intent(this, A_Event.class);
                 it_aEvent.putExtra("Data", dataInstance);
+                //it_aEvent.putExtra("UserId", currentUser);
                 startActivityForResult(it_aEvent, EVENT_ACTIVITY_REQUEST_CODE);
-                //intent.putExtra("UserId", currentUser);
+
                 finish();
             } else {
                 // Esse email ou senha incorretos
-                //alert(getString(R.string.informationIncorrect));
+                alert("Login", "Email ou senha incorretos!");
                 Log.d("OperLog" , "Email ou senha incorretos");
                 Log.d("OperSerialize" , dataInstance.serialize());
             }
@@ -71,7 +79,7 @@ public class A_Login extends AppCompatActivity implements Constants {
 
         }else{
             // email invalido
-            //alert(getString(R.string.invalidEmail));
+            alert("Login", "Email inválido!");
             Log.d("OperLog" , "Email invalido");
             Log.d("OperSerialize" , dataInstance.serialize());
         }
@@ -93,7 +101,6 @@ public class A_Login extends AppCompatActivity implements Constants {
                 Data dataSerialize = data.getExtras().getParcelable("Data");
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("Data"));
-
             }
         }
     }
