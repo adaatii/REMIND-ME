@@ -62,8 +62,12 @@ public class A_Home extends AppCompatActivity implements Constants {
             }
         }
         if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE){
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_FIRST_USER){
                 Log.d("OpenSerialize", dataInstance.serialize());
+            }else  if (resultCode == RESULT_OK){
+                Intent it_aRegister = new Intent(this, A_Register.class);
+                it_aRegister.putExtra("Data", dataInstance);
+                startActivityForResult(it_aRegister, REGISTER_ACTIVITY_REQUEST_CODE);
             }
         }
 

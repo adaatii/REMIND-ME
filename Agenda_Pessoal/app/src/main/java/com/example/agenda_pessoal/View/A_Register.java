@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,7 @@ public class A_Register extends AppCompatActivity implements Constants {
         getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
+        Log.d("OpenSerialize", dataInstance.serialize());
 
         btn_cadastro=findViewById(R.id.btn_cadastrar);
         et_nome=findViewById(R.id.et_name);

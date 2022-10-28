@@ -15,4 +15,8 @@
     <string name="descricao">Descrição</string>
     <string name="data">Data</string>
     <string name="hora">Hora</string>
+    <string name="nao_ha_tarefas">Não há Tarefas</string>
+    <string name="tarefas">Tarefas</string>
+    <string name="compromissos">Compromissos</string>
+    <string name="nao_ha_compromissos">Não há Compromissos</string>
 </resources>

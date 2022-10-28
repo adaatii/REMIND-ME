@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_viewCompromisso"
+        android:id="@+id/card_viewTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
@@ -23,7 +23,7 @@
             android:layout_height="75dp">
 
             <ImageView
-                android:id="@+id/ImageVIew_compromisso"
+                android:id="@+id/ImageView_Task"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -33,40 +33,32 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_tituloCompromisso"
+                android:id="@+id/tv_titleTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_descricaoCompromisso"
-                app:layout_constraintStart_toEndOf="@+id/ImageVIew_compromisso"
+                app:layout_constraintBottom_toTopOf="@+id/tv_descriptionTask"
+                app:layout_constraintStart_toEndOf="@+id/ImageView_Task"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_descricaoCompromisso"
+                android:id="@+id/tv_descriptionTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:text="TextView"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ImageVIew_compromisso"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tituloCompromisso" />
+                app:layout_constraintStart_toEndOf="@+id/ImageView_Task"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titleTask" />
 
-            <TextView
-                android:id="@+id/tv_horaCompromisso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="36dp"
-                android:text="TextView"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.285" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

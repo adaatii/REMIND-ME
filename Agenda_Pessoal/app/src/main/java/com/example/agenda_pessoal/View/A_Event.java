@@ -57,7 +57,7 @@ public class A_Event extends AppCompatActivity implements Constants {
         // Ordenação do TaskData (dataInstance.getDataTask())
         for (int i = 0; i < task.size(); i++) {
             Task item = task.get(i);
-            if (item.isEvent()) {
+            if (item.isEvent() && item.getOwner(dataInstance.log)) {
                 taskTree.add(i, item.event.date, localDate);
             }
         }
@@ -65,9 +65,9 @@ public class A_Event extends AppCompatActivity implements Constants {
         recyclerView.setAdapter(adapterEvent);
         // Set a visibilidade do texto Não Há compromissos
         if (taskTree.sort().size() > 0) {
-            tv_event.setText("Compromissos");
+            tv_event.setText(R.string.compromissos);
         } else {
-            tv_event.setText("Não há Compromissos");
+            tv_event.setText(R.string.nao_ha_compromissos);
         }
     }
 
@@ -75,6 +75,18 @@ public class A_Event extends AppCompatActivity implements Constants {
         Intent it_aNewEvent = new Intent(this, A_NewEvent.class);
         it_aNewEvent.putExtra("Data", dataInstance);
         startActivityForResult(it_aNewEvent, NEW_EVENT_ACTIVITY_REQUEST_CODE);
+    }
+
+    public void openProfileScreen(View v){
+        Intent it_aProfile = new Intent(this, A_Profile.class);
+        it_aProfile.putExtra("Data", dataInstance);
+        startActivityForResult(it_aProfile, PROFILE_ACTIVITY_REQUEST_CODE);
+    }
+
+    public void openTaskScreen(View v){
+        Intent it_aTask = new Intent(this, A_Task.class);
+        it_aTask.putExtra("Data", dataInstance);
+        startActivityForResult(it_aTask, TASK_ACTIVITY_REQUEST_CODE);
     }
 
     public void datePicker(View view) {
@@ -94,7 +106,7 @@ public class A_Event extends AppCompatActivity implements Constants {
                 // Ordenação do TaskData (dataInstance.getDataTask())
                 for (int i = 0; i < task.size(); i++) {
                     Task item = task.get(i);
-                    if (item.isEvent()) {
+                    if (item.isEvent() && item.getOwner(dataInstance.log)){
                         taskTree.add(i, item.event.date, date);
                     }
                 }
@@ -102,9 +114,9 @@ public class A_Event extends AppCompatActivity implements Constants {
                 adapterEvent.reloadView(dataInstance.getDataTask(), taskTree.sort());
                 // Set a visibilidade do texto Não Há compromissos
                 if (taskTree.sort().size() == 0) {
-                    tv_event.setText("Não há Compromissos");
+                    tv_event.setText(R.string.nao_ha_compromissos);
                 } else {
-                    tv_event.setText("Compromissos");
+                    tv_event.setText(R.string.compromissos);
                 }
 
             }
@@ -115,9 +127,10 @@ public class A_Event extends AppCompatActivity implements Constants {
     }
 
     public void returnToLogin(View view){
-        Intent it_aHome = new Intent();
-        it_aHome.putExtra("Data", dataInstance);
-        setResult(RESULT_OK, it_aHome);
+        dataInstance.log = null;
+        Intent it_aLogin = new Intent();
+        it_aLogin.putExtra("Data", dataInstance);
+        setResult(RESULT_OK, it_aLogin);
         finish();
     }
 
@@ -152,8 +165,11 @@ public class A_Event extends AppCompatActivity implements Constants {
                 }
             }
 
-        }
+        } else if (requestCode == PROFILE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_FIRST_USER) {
 
+            }
+        }
     }
 
 }

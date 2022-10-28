@@ -80,7 +80,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Não há Compromissos"
-            android:textSize="20dp" />
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -109,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/azul"
+            android:onClick="openTaskScreen"
             app:icon="@drawable/ic_baseline_task_alt_24"
             app:iconGravity="textEnd"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -130,6 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/azul"
+            android:onClick="openProfileScreen"
             app:icon="@drawable/ic_baseline_manage_accounts_24"
             app:iconGravity="textEnd"
             tools:ignore="SpeakableTextPresentCheck" />

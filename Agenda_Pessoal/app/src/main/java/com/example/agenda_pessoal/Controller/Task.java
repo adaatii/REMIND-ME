@@ -58,7 +58,7 @@ public class Task implements Parcelable {
                 "\"Owner\":" + "\"" + owner + "\", " +
                 "\"Description\":" + "\"" + description + "\", " +
                 "\"Finished\":" + "\"" + (finished ? "true" : "false") + "\"," +
-                "\"Event\":" + "\"" + (event == null? "null" : (event.serialize())) + "\"" +
+                "\"Event\":" + (event == null? "\"null\"" : (event.serialize())) +
                 "}";
         return serialize;
     }

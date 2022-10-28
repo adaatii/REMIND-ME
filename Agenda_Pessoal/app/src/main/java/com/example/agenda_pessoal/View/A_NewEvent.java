@@ -106,7 +106,7 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else{
-            Task newEvent = new Task(title, 0);
+            Task newEvent = new Task(title, dataInstance.log); //falta log usuario
             newEvent.description = descriptionNewEvent.getText().toString();
             newEvent.createEvent(new String[] {date, time});
             dataInstance.getDataTask().add(newEvent);

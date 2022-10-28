@@ -63,12 +63,11 @@ public class A_Login extends AppCompatActivity implements Constants {
             boolean currect;
             currect = emailIsUsed && loginUser.validatePassword(dataInstance.getDataUser().get(currentUser).getPassword(), log_password);
             if (currect) {
+                dataInstance.log = currentUser;
                 Intent it_aEvent = new Intent(this, A_Event.class);
                 it_aEvent.putExtra("Data", dataInstance);
-                //it_aEvent.putExtra("UserId", currentUser);
                 startActivityForResult(it_aEvent, EVENT_ACTIVITY_REQUEST_CODE);
 
-                finish();
             } else {
                 // Esse email ou senha incorretos
                 alert("Login", "Email ou senha incorretos!");
@@ -88,6 +87,12 @@ public class A_Login extends AppCompatActivity implements Constants {
 
     public void returnToHome(View v){
         Intent it_aHome = new Intent();
+        setResult(RESULT_DESTROY, it_aHome);
+        finish();
+    }
+
+    public void openRegister(View v){
+        Intent it_aHome = new Intent();
         setResult(RESULT_OK, it_aHome);
         finish();
     }
@@ -98,6 +103,10 @@ public class A_Login extends AppCompatActivity implements Constants {
         Log.d("resultCode", Integer.toString(resultCode));
         if (requestCode == EVENT_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_FIRST_USER){
+                Data dataSerialize = data.getExtras().getParcelable("Data");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("Data"));
+            }else if(resultCode == RESULT_OK){
                 Data dataSerialize = data.getExtras().getParcelable("Data");
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("Data"));

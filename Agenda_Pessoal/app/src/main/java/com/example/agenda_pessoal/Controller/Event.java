@@ -32,9 +32,7 @@ public class Event implements Parcelable {
 
     public String serialize() {
         String serialize;
-        serialize = "{" +
-                "\"Date\":" + "\"" + date.toString() + "\"" + // serialize = date.toString();
-                "}";
+        serialize = "[\"" + date[0] + "\",\"" + date[1] + "\"]"; // serialize = date.toString();
         return serialize;
     }
 

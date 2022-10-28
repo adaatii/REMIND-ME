@@ -9,8 +9,8 @@ public class Data implements Parcelable {
     private ArrayList<User> dataUser = new ArrayList<User>();
     private ArrayList<Task> dataTask = new ArrayList<Task>();
     private ArrayList<Relationship> dataRelationship = new ArrayList<Relationship>();
-    private boolean guest;
-    private Integer log;
+    public boolean guest;
+    public Integer log;
 
     public Data(){initializeValues();}
 
@@ -100,7 +100,7 @@ public class Data implements Parcelable {
                 new String[] {"23/10/2022", "08:00"}));
         dataTask.add(testTask(
                 "Reunião no Discord",
-                1,
+                0,
                 "trabalho de ESII"));
         dataRelationship.add(new Relationship(0,1));
         dataRelationship.add(new Relationship(1,0));
@@ -121,10 +121,10 @@ public class Data implements Parcelable {
 
     public String serialize(){
         String serialize;
-        serialize = "{" +
+        serialize = "{\"Data\":{" +
                 "\"guest\":" + "\"" + (guest ? "true" : "false") + "\"," +
                 "\"log\":" + "\"" + log + "\"," +
-                "\"dataUser\": [";
+                "\"User\": [";
         for (int i = 0; i < dataUser.size(); i++){
             User data = dataUser.get(i);
             serialize += data.serialize();
@@ -132,7 +132,7 @@ public class Data implements Parcelable {
         }
         serialize += "],";
 
-        serialize += "\"dataTask\": [";
+        serialize += "\"Task\": [";
 
         for (int i = 0; i < dataTask.size(); i++){
             Task data = dataTask.get(i);
@@ -141,7 +141,7 @@ public class Data implements Parcelable {
         }
         serialize += "],";
 
-        serialize += "\"dataRelationship\": [";
+        serialize += "\"Relationship\": [";
 
         for (int i = 0; i < dataRelationship.size(); i++){
             Relationship data = dataRelationship.get(i);
@@ -150,7 +150,7 @@ public class Data implements Parcelable {
         }
         serialize += "]";
 
-        serialize += "}";
+        serialize += "}}";
 
         return serialize;
     }
