@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.A_NewEvent">
+    tools:context=".View.A_EditEvent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,13 +20,12 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_backNewEventToEvents"
+                android:id="@+id/btn_backEditEventToEvents"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="330dp"
                 android:backgroundTint="@color/azul"
-                android:onClick="returnToEvent"
                 app:icon="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -47,14 +46,14 @@
                 android:layout_height="250dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="@string/novo_evento"
+                android:text="Editar Evento!"
                 android:textAlignment="gravity"
                 android:textColor="@color/black"
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_titleNewEvent"
+                android:id="@+id/et_titleEditEvent"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -69,7 +68,7 @@
                 tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
             <EditText
-                android:id="@+id/et_descriptionNewEvent"
+                android:id="@+id/et_descriptionEditEvent"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -88,7 +87,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/et_dateNewEvent"
+                    android:id="@+id/et_dateEditEvent"
                     android:layout_width="120dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
@@ -103,12 +102,12 @@
                     android:textAlignment="center"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/et_timeNewEvent"
+                    app:layout_constraintEnd_toStartOf="@+id/et_timeEditEvent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/et_timeNewEvent"
+                    android:id="@+id/et_timeEditEvent"
                     android:layout_width="120dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
@@ -136,13 +135,12 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_cadastrar"
+                android:id="@+id/btn_edit"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/azul"
-                android:onClick="createNewEvent"
-                android:text="@string/cadastrar"
+                android:text="Editar"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"
                 app:strokeWidth="2dp" />
@@ -171,4 +169,5 @@
 
 
     </LinearLayout>
+
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.agenda_pessoal.Model.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEv
     private ArrayList<Task> task = new ArrayList<Task>();
     private Context context;
     private ArrayList<Integer> sortedId = new ArrayList<>();
+    private itemActivityListener listener;
 
     //Mostra os eventos na RecyclerView
     public RecyclerAdapterEvent(ArrayList<Task> task, ArrayList<Integer> id, Context context){
@@ -42,13 +44,14 @@ public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEv
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CompromissoViewHolder holder,  int position){ // mostrara o data
+    public void onBindViewHolder(@NonNull CompromissoViewHolder holder, @SuppressLint("RecyclerView") int position){ // mostrara o data
         Task item = task.get(position);
         holder.bind(item);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Update de Evento;
+                listener.onItemClick(sortedId.get(position));
+
             }
         });
     }
@@ -70,6 +73,8 @@ public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEv
         notifyDataSetChanged();
     }
 
+    public void setListener(itemActivityListener listener){this.listener = listener;}
+
     public class CompromissoViewHolder extends RecyclerView.ViewHolder {
 
         private TextView titleEvent, descriptionEvent, timeEvent;
@@ -90,8 +95,10 @@ public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEv
             descriptionEvent.setText(item.description);
             timeEvent.setText(item.event.date[1]);
         }
+    }
 
-
+    public interface itemActivityListener{
+        void onItemClick(int position);
     }
 
 }

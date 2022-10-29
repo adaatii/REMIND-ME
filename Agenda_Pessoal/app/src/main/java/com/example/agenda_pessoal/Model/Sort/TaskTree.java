@@ -12,24 +12,24 @@ public class TaskTree {
         root = null;
     }
 
-    public void add(int idTask, String[] dateTime, String data) {
+    public void add(int idTask, String[] dateTime, String localDate) {
         boolean check = true;
-        if (data != null) {
+        if (localDate != null) {
             String[] splitDate;
             splitDate = dateTime[0].split("/");
-            LocalDate firstDate = LocalDate.of( //FirstDate armazena a data do nó a ser adicionado
+            LocalDate addDate = LocalDate.of( //addDate armazena a data do nó a ser adicionado
                     Integer.parseInt(splitDate[2]),
                     Integer.parseInt(splitDate[1]),
                     Integer.parseInt(splitDate[0])
             );
-            splitDate = data.split("/");
-            LocalDate secondDate = LocalDate.of( //FirstDate armazena a data do nó a ser adicionado
+            splitDate = localDate.split("/");
+            LocalDate pointerDate = LocalDate.of( //pointerDate armazena a data seilecionada a ser comparada
                     Integer.parseInt(splitDate[2]),
                     Integer.parseInt(splitDate[1]),
                     Integer.parseInt(splitDate[0])
             );
             Log.d("TAG", "IF comparação data");
-            if (firstDate.isAfter(secondDate) || firstDate.isBefore(secondDate)) {
+            if (addDate.isAfter(pointerDate) || addDate.isBefore(pointerDate)) { // Só recebe true se forem datas iguais
                 check = false;
             }
         }

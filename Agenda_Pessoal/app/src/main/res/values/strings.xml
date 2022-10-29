@@ -19,4 +19,9 @@
     <string name="tarefas">Tarefas</string>
     <string name="compromissos">Compromissos</string>
     <string name="nao_ha_compromissos">Não há Compromissos</string>
+    <string name="t_titulo_star">Título *</string>
+    <string name="data_star">Data *</string>
+    <string name="hora_star">Hora *</string>
+    <string name="campos_obrigatorios">* Campos Obrigatórios</string>
+    <string name="nova_tarefa">Nova Tarefa!</string>
 </resources>
