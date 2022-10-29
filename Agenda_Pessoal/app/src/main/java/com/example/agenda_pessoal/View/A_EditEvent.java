@@ -1,5 +1,6 @@
 package com.example.agenda_pessoal.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -59,6 +60,12 @@ public class A_EditEvent extends AppCompatActivity {
 
     }
 
+    public void alert(String title, String message){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("OK", null);
+        alertDialog.show();
+    }
+
     public void datePickerEditEvent() {
         final Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -98,16 +105,21 @@ public class A_EditEvent extends AppCompatActivity {
         String title = et_titleEditEvent.getText().toString();
         String description = et_descriptionEditEvent.getText().toString();
 
+        if (title.isEmpty() || date.isEmpty() || time.isEmpty()){
+            //Title não deve estar vazio
+            alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
+        }else {
+            Task upEvent = dataInstance.getDataTask().get(position);
+            ;
+            upEvent.setTitle(title);
+            upEvent.description = description;
+            upEvent.event.date = new String[]{date, time};
 
-        Task upEvent =  dataInstance.getDataTask().get(position);;
-        upEvent.setTitle(title);
-        upEvent.description = description;
-        upEvent.event.date = new String[] {date, time};
-
-        Intent it_aViewEvent = new Intent();
-        it_aViewEvent.putExtra("EditedEvent", dataInstance);
-        setResult(RESULT_FIRST_USER, it_aViewEvent);
-        finish();
+            Intent it_aViewEvent = new Intent();
+            it_aViewEvent.putExtra("EditedEvent", dataInstance);
+            setResult(RESULT_FIRST_USER, it_aViewEvent);
+            finish();
+        }
     }
 
     private void setInfoEvent() {
