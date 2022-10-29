@@ -96,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/azul"
+                android:onClick="createNewTask"
                 android:text="@string/cadastrar"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"

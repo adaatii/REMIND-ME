@@ -140,6 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/azul"
+                android:onClick="updateEvent"
                 android:text="Editar"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"

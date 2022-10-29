@@ -45,7 +45,7 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
         tv_dateNewEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dataPickerNewEvent();
+                datePickerNewEvent();
             }
         });
 
@@ -65,7 +65,7 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
     }
 
 
-    public void dataPickerNewEvent() {
+    public void datePickerNewEvent() {
         final Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -102,12 +102,13 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
         String date = tv_dateNewEvent.getText().toString();
         String time = tv_timeNewEvent.getText().toString();
         String title = titleNewEvent.getText().toString();
+        String description = descriptionNewEvent.getText().toString();
         if (title.isEmpty() || date.isEmpty() || time.isEmpty()){
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else{
             Task newEvent = new Task(title, dataInstance.log); //falta log usuario
-            newEvent.description = descriptionNewEvent.getText().toString();
+            newEvent.description = description;
             newEvent.createEvent(new String[] {date, time});
             dataInstance.getDataTask().add(newEvent);
             Intent it_aEvent = new Intent();
@@ -117,7 +118,7 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
         }
     }
 
-    public void returnToEvent(View view){
+    public void returnNewEventToEvent(View view){
         Intent it_aEvent = new Intent();
         setResult(RESULT_DESTROY, it_aEvent);
         finish();

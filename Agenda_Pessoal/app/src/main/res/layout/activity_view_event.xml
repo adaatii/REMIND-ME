@@ -82,19 +82,42 @@
                 android:id="@+id/tv_titleViewEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/t_titulo" />
+                android:layout_marginLeft="10dp"
+                android:text="@string/t_titulo"
+                android:textColor="@color/black"
+                android:textSize="48sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/descricao" />
 
             <TextView
                 android:id="@+id/tv_descriptionViewEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/descricao" />
+                android:layout_marginLeft="10dp"
+                android:text="description"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Data e hora" />
 
             <TextView
                 android:id="@+id/tv_dateTimeViewEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Data e Hora" />
+                android:layout_marginLeft="10dp"
+                android:text="date"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </LinearLayout>
 
 

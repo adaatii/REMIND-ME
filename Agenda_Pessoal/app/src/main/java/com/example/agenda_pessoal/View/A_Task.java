@@ -4,14 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.Task;
 import com.example.agenda_pessoal.Model.Adapter.RecyclerAdapterEvent;
 import com.example.agenda_pessoal.Model.Adapter.RecyclerAdapterTask;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.Model.Sort.TaskTree;
 import com.example.agenda_pessoal.R;
 
@@ -19,7 +23,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class A_Task extends AppCompatActivity {
+public class A_Task extends AppCompatActivity implements Constants {
     Data dataInstance;
     private RecyclerView recyclerView;
     private RecyclerAdapterTask adapterTask;
@@ -41,7 +45,7 @@ public class A_Task extends AppCompatActivity {
         ArrayList<Task> task = new ArrayList<>();
         //Percorre ArrayList Task, filtrando os finalizados
         for (Task item : dataInstance.getDataTask()) {
-            if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)){
+            if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
                 task.add(item);
             }
         }
@@ -55,4 +59,42 @@ public class A_Task extends AppCompatActivity {
             tv_Task.setText(R.string.tarefas);
         }
     }
+
+    public void openNewTaskScreen(View view) {
+        Intent it_newTask = new Intent(this, A_NewTask.class);
+        it_newTask.putExtra("Data", dataInstance);
+        startActivityForResult(it_newTask, NEW_TASK_ACTIVITY_REQUEST_CODE);
+    }
+
+    public void returnTaskToEvent(View view){
+        Intent it_aEvent = new Intent();
+        it_aEvent.putExtra("Data", dataInstance);
+        setResult(RESULT_OK, it_aEvent);
+        finish();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("resultCode", Integer.toString(resultCode));
+        if (requestCode == NEW_TASK_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_FIRST_USER) {
+                Data dataSerialize = data.getExtras().getParcelable("NewTask");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("NewTask"));
+
+                ArrayList<Task> task = new ArrayList<>();
+                //Percorre ArrayList Task, filtrando os finalizados
+                for (Task item : dataInstance.getDataTask()) {
+                    if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
+                        task.add(item);
+                    }
+                }
+
+                adapterTask.reloadView(task);
+            }
+        }
+    }
 }
+

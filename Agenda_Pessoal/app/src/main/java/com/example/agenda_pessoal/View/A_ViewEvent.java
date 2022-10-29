@@ -70,7 +70,11 @@ public class A_ViewEvent extends AppCompatActivity implements Constants {
         Log.d("resultCode", Integer.toString(resultCode));
         if (requestCode == EDIT_EVENT_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_FIRST_USER) {
+                Data dataSerialize = data.getExtras().getParcelable("EditedEvent");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("EditedEvent"));
 
+                setInfoEvent();
 
             }
         }

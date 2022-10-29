@@ -13,14 +13,14 @@
         android:background="@color/azul">
 
         <Button
-            android:id="@+id/btn_backEventToLogin"
+            android:id="@+id/btn_backTaskToEvent"
             android:layout_width="54dp"
             android:layout_height="50dp"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="335dp"
             android:layout_weight="1"
+            android:onClick="returnTaskToEvent"
             android:backgroundTint="@color/azul"
-            android:onClick="returnToLogin"
             app:icon="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,18 +32,17 @@
 
 
         <Button
-            android:id="@+id/btn_datePick"
+            android:id="@+id/btn_newTask"
             android:layout_width="54dp"
             android:layout_height="50dp"
             android:layout_marginStart="279dp"
             android:layout_marginEnd="2dp"
             android:backgroundTint="@color/azul"
-            android:onClick="datePicker"
             app:icon="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
-
+            android:onClick="openNewTaskScreen"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_backEventToLogin"
+            app:layout_constraintStart_toEndOf="@+id/btn_backTaskToEvent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
