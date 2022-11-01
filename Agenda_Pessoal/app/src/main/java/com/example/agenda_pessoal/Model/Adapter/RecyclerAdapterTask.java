@@ -21,11 +21,20 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
 
     private ArrayList<Task> task = new ArrayList<Task>();
     private Context context;
+    private ArrayList<Integer> listId = new ArrayList<>();
+    private itemActivityListener listener;
 
     //Mostra os eventos na RecyclerView
     public RecyclerAdapterTask(ArrayList<Task> task,  Context context) {
         this.context = context;
         this.task.addAll(task);
+
+        for (Task i: task) {
+            if (!i.isEvent()) {
+                listId.add(task.indexOf(i));
+            }
+        }
+
     }
 
     @NonNull
@@ -43,7 +52,7 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
         holder.cardViewTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Update de Evento;
+                listener.onItemClick(listId.get(position));
             }
         });
     }
@@ -54,11 +63,18 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
     }
 
     public void reloadView(ArrayList<Task> task) {
-        this.task.clear();
-        //Pega somente dos Id's que já foram filtrados e ordenado usando o taskTree (coloca em this.task)
+
         this.task.addAll(task);
+
+        for (Task i: task) {
+            if (!i.isEvent()) {
+                listId.add(task.indexOf(i));
+            }
+        }
         notifyDataSetChanged();
     }
+
+    public void setListener(itemActivityListener listener){this.listener = listener;}
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
 
@@ -77,7 +93,9 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
             titleTask.setText(item.getTitle());
             descriptionTask.setText(item.description);
         }
+    }
 
-
+    public interface itemActivityListener{
+        void onItemClick(int position);
     }
 }

@@ -51,7 +51,15 @@ public class A_Task extends AppCompatActivity implements Constants {
         }
         adapterTask = new RecyclerAdapterTask(task, A_Task.this);
         recyclerView.setAdapter(adapterTask);
-
+        adapterTask.setListener(new RecyclerAdapterTask.itemActivityListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent it_viewTask = new Intent(A_Task.this, A_ViewTask.class);
+                it_viewTask.putExtra("Data", dataInstance);
+                it_viewTask.putExtra("Position", position);
+                startActivityForResult(it_viewTask, VIEW_TASK_ACTIVITY_REQUEST_CODE);
+            }
+        });
         // Set a visibilidade do texto Não Há compromissos
         if (task.size() == 0) {
             tv_Task.setText(R.string.nao_ha_tarefas);

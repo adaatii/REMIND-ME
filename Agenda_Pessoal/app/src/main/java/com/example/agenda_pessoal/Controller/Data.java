@@ -88,6 +88,10 @@ public class Data implements Parcelable {
                 0,
                 "Na casinha",
                 new String[] {"22/10/2022", "06:00"}));
+        dataTask.add(testTask(
+                "Reunião no Discord",
+                0,
+                "trabalho de ESII"));
         dataTask.add(testEvent(
                 "Trabalho Enari",
                 0,
@@ -98,10 +102,15 @@ public class Data implements Parcelable {
                 0,
                 "Fatec Cruzeiro",
                 new String[] {"23/10/2022", "08:00"}));
+
         dataTask.add(testTask(
-                "Reunião no Discord",
+                "teste",
                 0,
-                "trabalho de ESII"));
+                "teste"));
+        dataTask.add(testTask(
+                "teste2",
+                0,
+                "teste2"));
         dataRelationship.add(new Relationship(0,1));
         dataRelationship.add(new Relationship(1,0));
 
