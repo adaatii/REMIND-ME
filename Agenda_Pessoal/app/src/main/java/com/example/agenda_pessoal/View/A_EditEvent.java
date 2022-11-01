@@ -55,9 +55,6 @@ public class A_EditEvent extends AppCompatActivity {
                 timePickerEditEvent();
             }
         });
-
-
-
     }
 
     public void alert(String title, String message){

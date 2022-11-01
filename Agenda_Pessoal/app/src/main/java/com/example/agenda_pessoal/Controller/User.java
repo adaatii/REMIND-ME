@@ -52,7 +52,7 @@ public class User implements Parcelable {
         password = newPassword;
     }
 
-    public boolean validatePassword(String pass, String confirmPass){
+    public boolean validatePassword(String pass, String confirmPass){ // autenticação de senha (falta tamanho)
         return pass.equals(confirmPass); }
 
     public boolean authenticateEmail(String authEmail){

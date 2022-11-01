@@ -23,7 +23,7 @@ public class TaskTree {
                     Integer.parseInt(splitDate[0])
             );
             splitDate = localDate.split("/");
-            LocalDate pointerDate = LocalDate.of( //pointerDate armazena a data seilecionada a ser comparada
+            LocalDate pointerDate = LocalDate.of( //pointerDate armazena a data selecionada a ser comparada
                     Integer.parseInt(splitDate[2]),
                     Integer.parseInt(splitDate[1]),
                     Integer.parseInt(splitDate[0])

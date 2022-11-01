@@ -1,15 +1,20 @@
 package com.example.agenda_pessoal.View;
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
+import com.example.agenda_pessoal.Controller.User;
 import com.example.agenda_pessoal.R;
 
-public class A_Profile extends Activity {
+public class A_Profile extends AppCompatActivity {
     Data dataInstance;
+    TextView tv_profileName, tv_profileEmail, tv_profilePhone;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
@@ -18,5 +23,18 @@ public class A_Profile extends Activity {
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
         Log.d("OpenSerialize", dataInstance.serialize());
+
+        tv_profileName = findViewById(R.id.tv_profileName);
+        tv_profileEmail = findViewById(R.id.tv_profileEmail);
+        tv_profilePhone = findViewById(R.id.tv_profilePhone);
+
+        setInfoProfile();
+    }
+
+    private void setInfoProfile() {
+        User user = dataInstance.getDataUser().get(dataInstance.log);
+        tv_profileName.setText(user.name);
+        tv_profileEmail.setText(user.getEmail());
+        tv_profilePhone.setText(user.phone);
     }
 }
