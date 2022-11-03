@@ -15,10 +15,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.agenda_pessoal.Controller.Data;
+import com.example.agenda_pessoal.Controller.Event;
 import com.example.agenda_pessoal.Controller.Task;
 import com.example.agenda_pessoal.R;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class A_EditEvent extends AppCompatActivity {
@@ -39,6 +42,8 @@ public class A_EditEvent extends AppCompatActivity {
         et_descriptionEditEvent = findViewById(R.id.et_descriptionEditEvent);
         tv_dateEditEvent = findViewById(R.id.et_dateEditEvent);
         tv_timeEditEvent = findViewById(R.id.et_timeEditEvent);
+
+
 
         setInfoEvent();
 
@@ -107,7 +112,7 @@ public class A_EditEvent extends AppCompatActivity {
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else {
             Task upEvent = dataInstance.getDataTask().get(position);
-            ;
+
             upEvent.setTitle(title);
             upEvent.description = description;
             upEvent.event.date = new String[]{date, time};
@@ -123,7 +128,14 @@ public class A_EditEvent extends AppCompatActivity {
         Task event = dataInstance.getDataTask().get(position);
         et_titleEditEvent.setText(event.getTitle());
         et_descriptionEditEvent.setText(event.description);
-        tv_dateEditEvent.setText(event.event.date[0]);
-        tv_timeEditEvent.setText(event.event.date[1]);
+        if (event.isEvent()) {
+            tv_dateEditEvent.setText(event.event.date[0]);
+            tv_timeEditEvent.setText(event.event.date[1]);
+        }else{
+            String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            dataInstance.getDataTask().get(position).event = new Event(new String[] {localDate, "00:00"});
+            tv_dateEditEvent.setText(localDate);
+            tv_timeEditEvent.setText("00:00");
+        }
     }
 }

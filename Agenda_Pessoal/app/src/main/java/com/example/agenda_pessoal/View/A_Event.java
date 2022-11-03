@@ -211,6 +211,27 @@ public class A_Event extends AppCompatActivity implements Constants {
                 Data dataSerialize = data.getExtras().getParcelable("Data");
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("Data"));
+
+                String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                tv_date.setText(localDate);
+
+                ArrayList<Task> task = dataInstance.getDataTask();
+                TaskTree taskTree = new TaskTree();
+                // Ordenação do TaskData (dataInstance.getDataTask())
+                for (int i = 0; i < task.size(); i++) {
+                    Task item = task.get(i);
+                    if (item.isEvent() && item.getOwner(dataInstance.log)) {
+                        taskTree.add(i, item.event.date, localDate);
+                    }
+                }
+
+                adapterEvent.reloadView(dataInstance.getDataTask(), taskTree.sort());
+                // Set a visibilidade do texto Não Há compromissos
+                if (taskTree.sort().size() == 0) {
+                    tv_event.setText("Não há Compromissos");
+                } else {
+                    tv_event.setText("Compromissos");
+                }
             }
         }
     }

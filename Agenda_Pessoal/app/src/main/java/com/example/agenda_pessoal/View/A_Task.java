@@ -29,6 +29,7 @@ public class A_Task extends AppCompatActivity implements Constants {
     private RecyclerAdapterTask adapterTask;
     TextView tv_Task;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +43,18 @@ public class A_Task extends AppCompatActivity implements Constants {
         recyclerView = findViewById(R.id.recyclerView_Task);
         recyclerView.setLayoutManager(new LinearLayoutManager(A_Task.this)); // Como o RecyclerView será mostrado na tela
 
+        Integer count = 0;
         ArrayList<Task> task = new ArrayList<>();
+        ArrayList<Integer> sortedId = new ArrayList<>();
         //Percorre ArrayList Task, filtrando os finalizados
         for (Task item : dataInstance.getDataTask()) {
             if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
                 task.add(item);
+                sortedId.add(count);
             }
+            count++;
         }
-        adapterTask = new RecyclerAdapterTask(task, A_Task.this);
+        adapterTask = new RecyclerAdapterTask(task, sortedId, A_Task.this);
         recyclerView.setAdapter(adapterTask);
         adapterTask.setListener(new RecyclerAdapterTask.itemActivityListener() {
             @Override
@@ -60,11 +65,13 @@ public class A_Task extends AppCompatActivity implements Constants {
                 startActivityForResult(it_viewTask, VIEW_TASK_ACTIVITY_REQUEST_CODE);
             }
         });
+
         // Set a visibilidade do texto Não Há compromissos
         if (task.size() == 0) {
+            tv_Task.setVisibility(View.VISIBLE);
             tv_Task.setText(R.string.nao_ha_tarefas);
         } else {
-            tv_Task.setText(R.string.tarefas);
+            tv_Task.setVisibility(View.GONE);
         }
     }
 
@@ -74,7 +81,7 @@ public class A_Task extends AppCompatActivity implements Constants {
         startActivityForResult(it_newTask, NEW_TASK_ACTIVITY_REQUEST_CODE);
     }
 
-    public void returnTaskToEvent(View view){
+    public void returnTaskToEvent(View view) {
         Intent it_aEvent = new Intent();
         it_aEvent.putExtra("Data", dataInstance);
         setResult(RESULT_OK, it_aEvent);
@@ -92,15 +99,50 @@ public class A_Task extends AppCompatActivity implements Constants {
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("NewTask"));
 
+                Integer count = 0;
                 ArrayList<Task> task = new ArrayList<>();
+                ArrayList<Integer> sortedId = new ArrayList<>();
                 //Percorre ArrayList Task, filtrando os finalizados
                 for (Task item : dataInstance.getDataTask()) {
                     if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
                         task.add(item);
+                        sortedId.add(count);
                     }
+                    count++;
                 }
+                adapterTask.reloadView(task, sortedId);
+            }
+        }
+        if (requestCode == VIEW_TASK_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Data dataSerialize = data.getExtras().getParcelable("Data");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("Data"));
+                Integer position = data.getExtras().getInt("Position");
+                Intent it_editEvent = new Intent(this, A_EditEvent.class);
+                it_editEvent.putExtra("Data", dataInstance);
+                it_editEvent.putExtra("Position", position);
+                startActivityForResult(it_editEvent, EDIT_EVENT_ACTIVITY_REQUEST_CODE);
+            }
+        }
+        if (requestCode == EDIT_EVENT_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_FIRST_USER) {
+                Data dataSerialize = data.getExtras().getParcelable("EditedEvent");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("EditedEvent"));
 
-                adapterTask.reloadView(task);
+                Integer count = 0;
+                ArrayList<Task> task = new ArrayList<>();
+                ArrayList<Integer> sortedId = new ArrayList<>();
+                //Percorre ArrayList Task, filtrando os finalizados
+                for (Task item : dataInstance.getDataTask()) {
+                    if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
+                        task.add(item);
+                        sortedId.add(count);
+                    }
+                    count++;
+                }
+                adapterTask.reloadView(task, sortedId);
             }
         }
     }

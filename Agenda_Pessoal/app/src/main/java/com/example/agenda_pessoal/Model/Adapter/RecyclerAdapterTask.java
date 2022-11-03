@@ -21,19 +21,15 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
 
     private ArrayList<Task> task = new ArrayList<Task>();
     private Context context;
-    private ArrayList<Integer> listId = new ArrayList<>();
     private itemActivityListener listener;
+    private ArrayList<Integer> sortedId = new ArrayList<>();
+
 
     //Mostra os eventos na RecyclerView
-    public RecyclerAdapterTask(ArrayList<Task> task,  Context context) {
+    public RecyclerAdapterTask(ArrayList<Task> task, ArrayList<Integer> id, Context context) {
         this.context = context;
         this.task.addAll(task);
-
-        for (Task i: task) {
-            if (!i.isEvent()) {
-                listId.add(task.indexOf(i));
-            }
-        }
+        sortedId.addAll(id);
 
     }
 
@@ -52,7 +48,7 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
         holder.cardViewTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onItemClick(listId.get(position));
+                listener.onItemClick(sortedId.get(position));
             }
         });
     }
@@ -62,15 +58,12 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
         return task.size();
     }
 
-    public void reloadView(ArrayList<Task> task) {
-
+    public void reloadView(ArrayList<Task> task, ArrayList<Integer> id) {
+        this.task.clear();
+        sortedId.clear();
+        //Pega somente dos Id's que já foram filtrados e ordenado usando o taskTree (coloca em this.task)
         this.task.addAll(task);
-
-        for (Task i: task) {
-            if (!i.isEvent()) {
-                listId.add(task.indexOf(i));
-            }
-        }
+        sortedId.addAll(id);
         notifyDataSetChanged();
     }
 

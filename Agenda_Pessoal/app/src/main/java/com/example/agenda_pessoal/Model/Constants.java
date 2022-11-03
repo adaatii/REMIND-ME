@@ -15,8 +15,6 @@ public interface Constants {
     int NEW_TASK_ACTIVITY_REQUEST_CODE = 8;
     int VIEW_TASK_ACTIVITY_REQUEST_CODE = 9;
 
-
-
     //RESULTS
     int RESULT_DESTROY = 2;
 

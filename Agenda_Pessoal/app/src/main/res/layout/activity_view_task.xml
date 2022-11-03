@@ -20,13 +20,14 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_backViewEventToEvents"
+
+                android:id="@+id/btn_backViewTaskToTasks"
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="330dp"
                 android:backgroundTint="@color/azul"
-                android:onClick="returnToEvent"
+
                 app:icon="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,14 +42,16 @@
                 android:layout_marginStart="89dp"
                 android:layout_marginTop="9dp"
                 android:layout_marginBottom="8dp"
-                android:text="TAREFA"
+
+                android:text="TAREFAS"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button2"
-                app:layout_constraintStart_toEndOf="@+id/btn_backViewEventToEvents"
+
+                app:layout_constraintStart_toEndOf="@+id/btn_backViewTaskToTasks"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -74,9 +77,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="546dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_titleViewTask"
@@ -103,9 +105,31 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_definirComoEvento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/azul"
+                    android:onClick="changeTaskToEvent"
+                    android:text="Definir como Evento" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

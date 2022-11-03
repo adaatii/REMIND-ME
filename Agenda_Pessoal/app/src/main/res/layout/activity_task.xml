@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/azul">
 
+
         <Button
             android:id="@+id/btn_backTaskToEvent"
             android:layout_width="54dp"
@@ -19,17 +20,16 @@
             android:layout_marginStart="2dp"
             android:layout_marginEnd="335dp"
             android:layout_weight="1"
-            android:onClick="returnTaskToEvent"
             android:backgroundTint="@color/azul"
+            android:onClick="returnTaskToEvent"
             app:icon="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.318"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="SpeakableTextPresentCheck" />
-
 
         <Button
             android:id="@+id/btn_newTask"
@@ -45,6 +45,25 @@
             app:layout_constraintStart_toEndOf="@+id/btn_backTaskToEvent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="97dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="97dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/tarefas"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_newTask"
+            app:layout_constraintStart_toEndOf="@+id/btn_backTaskToEvent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

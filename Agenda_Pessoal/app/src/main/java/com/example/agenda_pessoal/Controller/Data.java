@@ -12,7 +12,9 @@ public class Data implements Parcelable {
     public boolean guest;
     public Integer log;
 
-    public Data(){initializeValues();}
+    public Data() {
+        initializeValues();
+    }
 
 
     protected Data(Parcel in) {
@@ -39,7 +41,7 @@ public class Data implements Parcelable {
         }
     };
 
-    public void Update(Data updatedData){
+    public void Update(Data updatedData) {
         dataUser.clear();
         dataTask.clear();
         dataRelationship.clear();
@@ -63,56 +65,67 @@ public class Data implements Parcelable {
 
     }
 
-    private User testUser(String name, String email, String phone, String password){
+    private User testUser(String name, String email, String phone, String password) {
         User user = new User();
-        user.NewUser(name,email,phone, password);
+        user.NewUser(name, email, phone, password);
         return user;
     }
-    private Task testEvent(String title, int owner,String description, String[] dateTime){
+
+    private Task testEvent(String title, int owner, String description, String[] dateTime) {
         Task event = new Task(title, owner);
         event.description = description;
         event.createEvent(dateTime);
         return event;
     }
 
-    private Task testTask(String title, int owner,String description){
+    private Task testTask(String title, int owner, String description) {
         Task task = new Task(title, owner);
         task.description = description;
         return task;
     }
-    public void initializeValues(){
-        dataUser.add(testUser("Lucas","teste@teste.com.br","1298875748","123"));
-        dataUser.add(testUser("Leandro","teste2@teste.com.br","4845456484","123"));
+
+    public void initializeValues() {
+        dataUser.add(testUser("Lucas", "teste@teste.com.br", "1298875748", "123"));
+        dataUser.add(testUser("Leandro", "teste2@teste.com.br", "4845456484", "123"));
+
         dataTask.add(testEvent(
                 "Dor e sofrimento",
                 0,
                 "Na casinha",
-                new String[] {"22/10/2022", "06:00"}));
+                new String[]{"03/11/2022", "06:00"}));
+
         dataTask.add(testTask(
                 "Reunião no Discord",
                 0,
                 "trabalho de ESII"));
+
         dataTask.add(testEvent(
                 "Trabalho Enari",
                 0,
                 "",
-                new String[] {"23/10/2022", "06:00"}));
+                new String[]{"23/10/2022", "06:00"}));
         dataTask.add(testEvent(
                 "Acelera",
                 0,
                 "Fatec Cruzeiro",
-                new String[] {"23/10/2022", "08:00"}));
+                new String[]{"23/10/2022", "08:00"}));
 
         dataTask.add(testTask(
                 "teste",
                 0,
-                "teste"));
+                "trabalho de ESII"));
         dataTask.add(testTask(
                 "teste2",
                 0,
-                "teste2"));
-        dataRelationship.add(new Relationship(0,1));
-        dataRelationship.add(new Relationship(1,0));
+                ""));
+        dataTask.add(testTask(
+                "teste3",
+                0,
+                ""));
+        dataRelationship.add(new Relationship(0, 1));
+        dataRelationship.add(new Relationship(1, 0));
+
+
 
     }
 
@@ -128,13 +141,13 @@ public class Data implements Parcelable {
         return dataRelationship;
     }
 
-    public String serialize(){
+    public String serialize() {
         String serialize;
         serialize = "{\"Data\":{" +
                 "\"guest\":" + "\"" + (guest ? "true" : "false") + "\"," +
                 "\"log\":" + "\"" + log + "\"," +
                 "\"User\": [";
-        for (int i = 0; i < dataUser.size(); i++){
+        for (int i = 0; i < dataUser.size(); i++) {
             User data = dataUser.get(i);
             serialize += data.serialize();
             serialize += (dataUser.size() - 1) == i ? "" : ",";
@@ -143,7 +156,7 @@ public class Data implements Parcelable {
 
         serialize += "\"Task\": [";
 
-        for (int i = 0; i < dataTask.size(); i++){
+        for (int i = 0; i < dataTask.size(); i++) {
             Task data = dataTask.get(i);
             serialize += data.serialize();
             serialize += (dataTask.size() - 1) == i ? "" : ",";
@@ -152,7 +165,7 @@ public class Data implements Parcelable {
 
         serialize += "\"Relationship\": [";
 
-        for (int i = 0; i < dataRelationship.size(); i++){
+        for (int i = 0; i < dataRelationship.size(); i++) {
             Relationship data = dataRelationship.get(i);
             serialize += data.serialize();
             serialize += (dataRelationship.size() - 1) == i ? "" : ",";

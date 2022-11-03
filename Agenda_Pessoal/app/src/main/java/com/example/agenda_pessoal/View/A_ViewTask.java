@@ -2,7 +2,12 @@ package com.example.agenda_pessoal.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
@@ -11,8 +16,9 @@ import com.example.agenda_pessoal.R;
 
 public class A_ViewTask extends AppCompatActivity {
     Data dataInstance;
+    TextView tv_titleViewTask, tv_descriptionViewTask;
     Integer position;
-    TextView tv_titleViewTask,tv_descriptionViewTask;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,14 @@ public class A_ViewTask extends AppCompatActivity {
 
         setInfoEvent();
 
+    }
+
+    public void changeTaskToEvent(View view) {
+        Intent it_aTask = new Intent();
+        it_aTask.putExtra("Data", dataInstance);
+        it_aTask.putExtra("Position", position);
+        setResult(RESULT_OK, it_aTask);
+        finish();
 
     }
 
