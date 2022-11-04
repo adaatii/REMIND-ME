@@ -17,6 +17,7 @@ import android.widget.TimePicker;
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.Event;
 import com.example.agenda_pessoal.Controller.Task;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class A_EditEvent extends AppCompatActivity {
+public class A_EditEvent extends AppCompatActivity implements Constants {
     Data dataInstance;
     Integer position;
     EditText et_titleEditEvent,et_descriptionEditEvent;
@@ -122,6 +123,12 @@ public class A_EditEvent extends AppCompatActivity {
             setResult(RESULT_FIRST_USER, it_aViewEvent);
             finish();
         }
+    }
+
+    public void returnEditEventToViewEvent(View v){
+        Intent it_aViewEvent = new Intent();
+        setResult(RESULT_DESTROY, it_aViewEvent);
+        finish();
     }
 
     private void setInfoEvent() {

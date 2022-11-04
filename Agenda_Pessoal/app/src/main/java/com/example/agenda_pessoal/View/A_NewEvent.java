@@ -20,7 +20,10 @@ import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 
 public class A_NewEvent extends AppCompatActivity implements Constants {
 
@@ -37,10 +40,17 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
 
+        String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Date time = new Date();
+        String localTime = new SimpleDateFormat("HH:mm").format(time);
+
         tv_dateNewEvent = findViewById(R.id.et_dateNewEvent);
         tv_timeNewEvent = findViewById(R.id.et_timeNewEvent);
         titleNewEvent = findViewById(R.id.et_titleNewEvent);
         descriptionNewEvent = findViewById(R.id.et_descriptionNewEvent);
+
+        tv_dateNewEvent.setText(localDate);
+        tv_timeNewEvent.setText(localTime);
 
         tv_dateNewEvent.setOnClickListener(new View.OnClickListener() {
             @Override

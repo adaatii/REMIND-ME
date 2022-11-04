@@ -46,7 +46,7 @@
                 android:layout_height="143dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="Crie sua conta!"
+                android:text="@string/crie_sua_conta"
                 android:textAlignment="gravity"
                 android:textColor="@color/black"
                 android:textSize="34sp"
@@ -64,7 +64,8 @@
                 android:hint="@string/nome"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/et_email"
@@ -75,7 +76,8 @@
                 android:background="@drawable/stl_et"
                 android:ems="10"
                 android:hint="@string/email"
-                android:inputType="textPersonName"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName|textEmailAddress"
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -88,7 +90,9 @@
                 android:background="@drawable/stl_et"
                 android:ems="10"
                 android:hint="@string/telefone"
+                android:importantForAutofill="no"
                 android:inputType="phone"
+                android:maxLength="13"
                 android:minHeight="48dp" />
 
             <EditText
@@ -102,7 +106,8 @@
                 android:hint="@string/senha"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/et_confPassword"
@@ -115,7 +120,8 @@
                 android:hint="@string/confirme_a_senha"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
 
         </LinearLayout>
 
@@ -141,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Já possui registro?"
+                android:text="@string/ja_possui_registro"
                 android:textStyle="bold" />
 
             <TextView
@@ -151,7 +157,7 @@
                 android:layout_gravity="center"
                 android:minHeight="48dp"
                 android:onClick="abrirLogin"
-                android:text="Clique aqui!"
+                android:text="@string/clique_aqui"
                 android:textColor="@color/dark_blue"
                 android:textStyle="bold"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
@@ -169,7 +175,7 @@
                 android:layout_marginTop="85dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="* Campos Obrigatórios"
+                android:text="@string/campos_obrigatorios"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

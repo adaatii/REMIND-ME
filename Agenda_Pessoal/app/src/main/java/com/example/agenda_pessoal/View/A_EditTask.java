@@ -11,12 +11,13 @@ import android.widget.EditText;
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.Event;
 import com.example.agenda_pessoal.Controller.Task;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class A_EditTask extends AppCompatActivity {
+public class A_EditTask extends AppCompatActivity implements Constants {
     Data dataInstance;
     Integer position;
     EditText et_titleEditTask,et_descriptionEditTask;
@@ -59,6 +60,12 @@ public class A_EditTask extends AppCompatActivity {
             setResult(RESULT_FIRST_USER, it_aViewTask);
             finish();
         }
+    }
+
+    public void returnEditTaskToViewTask(View v){
+        Intent it_aViewTask = new Intent();
+        setResult(RESULT_DESTROY, it_aViewTask);
+        finish();
     }
 
     private void setInfoTask() {
