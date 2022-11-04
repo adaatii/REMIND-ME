@@ -2,9 +2,11 @@ package com.example.agenda_pessoal.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
@@ -36,5 +38,13 @@ public class A_Profile extends AppCompatActivity {
         tv_profileName.setText(user.name);
         tv_profileEmail.setText(user.getEmail());
         tv_profilePhone.setText(user.phone);
+    }
+
+    public void returnProfileToEvent(View view) {
+        Intent it_aEvent = new Intent();
+        it_aEvent.putExtra("Data", dataInstance);
+        setResult(RESULT_OK, it_aEvent);
+        finish();
+
     }
 }

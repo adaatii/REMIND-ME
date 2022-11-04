@@ -123,6 +123,23 @@ public class A_Task extends AppCompatActivity implements Constants {
                 it_editEvent.putExtra("Data", dataInstance);
                 it_editEvent.putExtra("Position", position);
                 startActivityForResult(it_editEvent, EDIT_EVENT_ACTIVITY_REQUEST_CODE);
+            }else if(resultCode == RESULT_FIRST_USER){
+                Data dataSerialize = data.getExtras().getParcelable("Data");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("Data"));
+
+                Integer count = 0;
+                ArrayList<Task> task = new ArrayList<>();
+                ArrayList<Integer> sortedId = new ArrayList<>();
+                //Percorre ArrayList Task, filtrando os finalizados
+                for (Task item : dataInstance.getDataTask()) {
+                    if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
+                        task.add(item);
+                        sortedId.add(count);
+                    }
+                    count++;
+                }
+                adapterTask.reloadView(task, sortedId);
             }
         }
         if (requestCode == EDIT_EVENT_ACTIVITY_REQUEST_CODE) {

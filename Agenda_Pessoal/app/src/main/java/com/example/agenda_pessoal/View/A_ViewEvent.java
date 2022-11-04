@@ -51,7 +51,7 @@ public class A_ViewEvent extends AppCompatActivity implements Constants {
     public void returnToEvent(View view) {
         Intent it_aEvent = new Intent();
         it_aEvent.putExtra("Data", dataInstance);
-        setResult(RESULT_OK, it_aEvent);
+        setResult(RESULT_FIRST_USER, it_aEvent);
         finish();
 
     }

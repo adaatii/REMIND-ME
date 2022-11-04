@@ -15,12 +15,13 @@ import android.widget.TimePicker;
 
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.Task;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class A_NewTask extends AppCompatActivity {
+public class A_NewTask extends AppCompatActivity implements Constants {
     Data dataInstance;
     EditText et_titleNewTask,et_descriptionNewTask;
 
@@ -58,7 +59,11 @@ public class A_NewTask extends AppCompatActivity {
             setResult(RESULT_FIRST_USER, it_aTask);
             finish();
         }
-
+    }
+    public void returnNewTaskToTask(View view){
+        Intent it_aTask = new Intent();
+        setResult(RESULT_DESTROY, it_aTask);
+        finish();
     }
 
 

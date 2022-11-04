@@ -176,11 +176,13 @@ public class A_Event extends AppCompatActivity implements Constants {
             }
 
         } else if (requestCode == PROFILE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == RESULT_FIRST_USER) {
-
+            if (resultCode == RESULT_OK){
+                Data dataSerialize = data.getExtras().getParcelable("Data");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("Data"));
             }
         } else if (requestCode == VIEW_EVENT_ACTIVITY_REQUEST_CODE){
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_FIRST_USER){
                 Data dataSerialize = data.getExtras().getParcelable("Data");
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("Data"));
@@ -197,7 +199,6 @@ public class A_Event extends AppCompatActivity implements Constants {
                         taskTree.add(i, item.event.date, localDate);
                     }
                 }
-
                 adapterEvent.reloadView(dataInstance.getDataTask(), taskTree.sort());
                 // Set a visibilidade do texto Não Há compromissos
                 if (taskTree.sort().size() == 0) {

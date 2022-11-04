@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">Agenda_Pessoal</string>
-    <string name="nome_app" translatable="false">Nome da Aplicação</string>
-    <string name="nome" translatable="false">Nome *</string>
-    <string name="telefone" translatable="false">Telefone *</string>
-    <string name="email" translatable="false">Email *</string>
-    <string name="senha" translatable="false">Senha *</string>
-    <string name="confirme_a_senha" translatable="false">Confirme a Senha *</string>
-    <string name="cadastrar" translatable="false">Cadastrar</string>
-    <string name="entrar" translatable="false">Entrar</string>
-    <string name="realize_seu_login" translatable="false">Realize seu login!</string>
+    <string name="nome_app" >Nome da Aplicação</string>
+    <string name="nome" >Nome *</string>
+    <string name="telefone" >Telefone *</string>
+    <string name="email" >Email *</string>
+    <string name="senha" >Senha *</string>
+    <string name="confirme_a_senha" >Confirme a Senha *</string>
+    <string name="cadastrar" >Cadastrar</string>
+    <string name="entrar" >Entrar</string>
+    <string name="realize_seu_login" >Realize seu login!</string>
     <string name="data_aqui">DATA AQUI</string>
-    <string name="novo_evento">Novo Evento!</string>
+    <string name="novo_evento">Novo Evento</string>
     <string name="t_titulo">Título</string>
     <string name="descricao">Descrição</string>
     <string name="data">Data</string>
@@ -23,5 +23,7 @@
     <string name="data_star">Data *</string>
     <string name="hora_star">Hora *</string>
     <string name="campos_obrigatorios">* Campos Obrigatórios</string>
-    <string name="nova_tarefa">Nova Tarefa!</string>
+    <string name="nova_tarefa">Nova Tarefa</string>
+    <string name="editar">Editar</string>
+    <string name="editar_tarefa">Editar Tarefa</string>
 </resources>

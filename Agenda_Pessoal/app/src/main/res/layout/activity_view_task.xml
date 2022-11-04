@@ -28,6 +28,7 @@
                 android:layout_marginEnd="330dp"
                 android:backgroundTint="@color/azul"
 
+                android:onClick="returnViewTaskToTask"
                 app:icon="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +65,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="1dp"
                 android:backgroundTint="@color/azul"
-                android:onClick="openEditEvent"
+                android:onClick="openEditTask"
                 app:icon="@drawable/ic_baseline_edit_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
