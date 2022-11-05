@@ -58,7 +58,7 @@ public class User implements Parcelable {
     public boolean authenticateEmail(String authEmail){
         boolean emailIsValid = false;
         if (authEmail != null &&  authEmail.length() > 0) {
-            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            String expression = "^[\\w.-]+@[\\w-]+.[a-z]{2,4}+(.[a-z]{2,4}+)*$";
             Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(authEmail);
             if (matcher.matches()) {

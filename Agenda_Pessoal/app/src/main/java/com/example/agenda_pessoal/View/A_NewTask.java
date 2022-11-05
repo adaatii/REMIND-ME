@@ -51,7 +51,7 @@ public class A_NewTask extends AppCompatActivity implements Constants {
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else{
-            Task newTask = new Task(title, dataInstance.log);
+            Task newTask = new Task(title, dataInstance.log,1);//RadioBTN
             newTask.description = description;
             dataInstance.getDataTask().add(newTask);
             Intent it_aTask = new Intent();

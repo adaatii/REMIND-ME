@@ -9,12 +9,14 @@ public class Task implements Parcelable {
     public String description;
     private String title;
     public boolean finished;
+    public int priority;
 
-    public Task(String title, int owner) {
+    public Task(String title, int owner, int priority) {
         this.event = null;
         this.title = title;
         this.finished = false;
         this.owner = owner;
+        this.priority = priority;
     }
 
     protected Task(Parcel in) {
@@ -23,6 +25,7 @@ public class Task implements Parcelable {
         description = in.readString();
         title = in.readString();
         finished = in.readByte() != 0;
+        priority = in.readInt();
     }
 
     public static final Creator<Task> CREATOR = new Creator<Task>() {
@@ -37,7 +40,6 @@ public class Task implements Parcelable {
         }
     };
 
-
     public boolean isEvent(){return (event != null);} //verifica se é um evento
 
     //Getters
@@ -50,6 +52,20 @@ public class Task implements Parcelable {
         this.event = new Event(dataTime);
     }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(owner);
+        dest.writeParcelable(event, flags);
+        dest.writeString(description);
+        dest.writeString(title);
+        dest.writeByte((byte) (finished ? 1 : 0));
+        dest.writeInt(priority);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
     public String serialize(){
         String serialize;
@@ -59,22 +75,12 @@ public class Task implements Parcelable {
                 "\"Description\":" + "\"" + description + "\", " +
                 "\"Finished\":" + "\"" + (finished ? "true" : "false") + "\"," +
                 "\"Event\":" + (event == null? "\"null\"" : (event.serialize())) +
+                "\"Priority\":" + "\"" + priority + "\", "+
                 "}";
         return serialize;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(owner);
-        parcel.writeParcelable(event, i);
-        parcel.writeString(description);
-        parcel.writeString(title);
-        parcel.writeByte((byte) (finished ? 1 : 0));
-    }
+
 }
 

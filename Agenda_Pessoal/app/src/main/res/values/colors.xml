@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="azul">#2e71d4</color>
     <color name="dark_blue">#003380</color>
+    <color name="low_priority">#B1F1B4</color>
+    <color name="medium_priority">#F1EBB1</color>
+    <color name="high_priority">#F1B1B1</color>
+    <color name="default_priority">#B1BBF1</color>
 </resources>

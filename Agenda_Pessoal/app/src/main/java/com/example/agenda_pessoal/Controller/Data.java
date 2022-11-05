@@ -91,14 +91,14 @@ public class Data implements Parcelable {
     }
 
     private Task testEvent(String title, int owner, String description, String[] dateTime) {
-        Task event = new Task(title, owner);
+        Task event = new Task(title, owner,1);
         event.description = description;
         event.createEvent(dateTime);
         return event;
     }
 
     private Task testTask(String title, int owner, String description) {
-        Task task = new Task(title, owner);
+        Task task = new Task(title, owner,2);
         task.description = description;
         return task;
     }

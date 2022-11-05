@@ -151,7 +151,7 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
                         }, null);
 
             }else {
-                Task newEvent = new Task(title, dataInstance.log); //falta log usuario
+                Task newEvent = new Task(title, dataInstance.log,1); //RadioBTN
                 newEvent.description = description;
                 newEvent.createEvent(new String[]{date, time});
                 dataInstance.getDataTask().add(newEvent);

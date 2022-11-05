@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:backgroundTint="#B1BBF1"
         app:cardCornerRadius="7dp"
         app:cardElevation="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,28 +19,30 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp">
+            android:layout_height="75dp"
+            >
 
             <ImageView
-                android:id="@+id/ImageVIew_compromisso"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/alert_warning_signal_icon_131571"
+                android:id="@+id/ImageView_compromisso"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_hight_priority"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.542" />
 
             <TextView
                 android:id="@+id/tv_tituloCompromisso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="TextView"
+                android:text="@string/t_titulo"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_descricaoCompromisso"
-                app:layout_constraintStart_toEndOf="@+id/ImageVIew_compromisso"
+                app:layout_constraintStart_toEndOf="@+id/ImageView_compromisso"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -49,10 +50,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="TextView"
+                android:text="@string/descricao"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ImageVIew_compromisso"
+                app:layout_constraintStart_toEndOf="@+id/ImageView_compromisso"
                 app:layout_constraintTop_toBottomOf="@+id/tv_tituloCompromisso" />
 
             <TextView
@@ -60,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="36dp"
-                android:text="TextView"
+                android:text="@string/hora"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

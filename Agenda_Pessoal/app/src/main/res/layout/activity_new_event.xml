@@ -37,14 +37,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="451dp"
-            android:orientation="vertical"
-            >
+            android:layout_height="500dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="209dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="@string/novo_evento"
@@ -53,86 +52,140 @@
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/et_titleNewEvent"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/stl_et"
-                android:ems="10"
-                android:hint="Título *"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
-
-            <EditText
-                android:id="@+id/et_descriptionNewEvent"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/stl_et"
-                android:ems="10"
-                android:hint="@string/descricao"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:paddingLeft="27dp"
+                android:paddingRight="27dp"
+                android:paddingTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_titleNewEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/stl_et"
+                    android:hint="Título *"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
+
+                <EditText
+                    android:id="@+id/et_descriptionNewEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/stl_et"
+                    android:hint="@string/descricao"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="27dp"
+                android:paddingRight="27dp"
+                android:paddingBottom="5dp">
 
                 <TextView
                     android:id="@+id/et_dateNewEvent"
                     android:layout_width="120dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="113dp"
                     android:background="@drawable/stl_et"
-                    android:ems="10"
                     android:hint="Data *"
                     android:importantForAutofill="no"
                     android:inputType="date"
                     android:minHeight="48dp"
                     android:textAlignment="center"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/et_timeNewEvent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="20sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/et_timeNewEvent"
                     android:layout_width="120dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="1dp"
                     android:background="@drawable/stl_et"
-                    android:ems="10"
                     android:hint="Hora *"
                     android:importantForAutofill="no"
                     android:inputType="time"
                     android:minHeight="48dp"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="SpeakableTextPresentCheck" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Seleção de prioridade *"
+                android:textAlignment="center"
+                android:textColor="#D5000000"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/rbtn_hight_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Alta" />
+
+                <RadioButton
+                    android:id="@+id/rbtn_medium_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="7dp"
+                    android:text="Média" />
+
+                <RadioButton
+                    android:id="@+id/rbtn_low_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="14dp"
+                    android:text="Baixa" />
+
+                <RadioButton
+                    android:id="@+id/rbtn_no_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Nula" />
+
+            </RadioGroup>
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="87dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical">
 
             <Button

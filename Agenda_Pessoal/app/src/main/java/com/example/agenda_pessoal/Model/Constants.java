@@ -1,6 +1,8 @@
 package com.example.agenda_pessoal.Model;
 
 
+import com.example.agenda_pessoal.R;
+
 public interface Constants {
     //DON'T CREATE A CONSTANT WITH THE SAME NUMBER
     //REQUESTS
@@ -18,6 +20,14 @@ public interface Constants {
 
     //RESULTS
     int RESULT_DESTROY = 2;
+
+    //PRIORITY
+    int[][] PRIORITY_LIST = new int[][]{
+            new int[]{R.drawable.ic_hight_priority, R.color.high_priority},
+            new int[]{R.drawable.ic_medium_priority, R.color.medium_priority},
+            new int[]{R.drawable.ic_low_priority, R.color.low_priority},
+            new int[]{R.drawable.ic_clock, R.color.default_priority}
+    };
 
 }
 

@@ -6,19 +6,22 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agenda_pessoal.Controller.Task;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEvent.CompromissoViewHolder> {
+public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEvent.CompromissoViewHolder> implements Constants {
 
     private ArrayList<Task> task = new ArrayList<Task>();
     private Context context;
@@ -79,6 +82,7 @@ public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEv
 
         private TextView titleEvent, descriptionEvent, timeEvent;
         private CardView cardView;
+        private ImageView priority;
 
         public CompromissoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,13 +91,17 @@ public class RecyclerAdapterEvent extends RecyclerView.Adapter<RecyclerAdapterEv
             descriptionEvent = itemView.findViewById(R.id.tv_descricaoCompromisso);
             timeEvent = itemView.findViewById(R.id.tv_horaCompromisso);
             cardView = itemView.findViewById(R.id.card_viewCompromisso);
+            priority = itemView.findViewById(R.id.ImageView_compromisso);
 
         }
+
 
         public void bind(Task item){
             titleEvent.setText(item.getTitle());
             descriptionEvent.setText(item.description);
             timeEvent.setText(item.event.date[1]);
+            priority.setImageResource(PRIORITY_LIST[item.priority][0]);
+            cardView.setCardBackgroundColor(ContextCompat.getColor(context, PRIORITY_LIST[item.priority][1]));
         }
     }
 
