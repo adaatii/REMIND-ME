@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.Task;
@@ -74,6 +77,17 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
         alertDialog.show();
     }
 
+    public void changeEventAlert(
+        String title,
+        String message,
+        DialogInterface.OnClickListener accept,
+        DialogInterface.OnClickListener refuse
+    ){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("SIM", accept ).setNegativeButton("NÃO", refuse);
+        alertDialog.show();
+    }
+
 
     public void datePickerNewEvent() {
         final Calendar calendar = Calendar.getInstance();
@@ -117,14 +131,35 @@ public class A_NewEvent extends AppCompatActivity implements Constants {
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else{
-            Task newEvent = new Task(title, dataInstance.log); //falta log usuario
-            newEvent.description = description;
-            newEvent.createEvent(new String[] {date, time});
-            dataInstance.getDataTask().add(newEvent);
-            Intent it_aEvent = new Intent();
-            it_aEvent.putExtra("NewEvent", dataInstance);
-            setResult(RESULT_FIRST_USER, it_aEvent);
-            finish();
+            Integer checkTime = dataInstance.checkEventTime(date, time);
+            if (checkTime != null){
+                String titleEvent = dataInstance.getDataTask().get(checkTime).getTitle();
+                changeEventAlert(
+                        "Sobrescrever evento",
+                        "O evento " + titleEvent + " já ocupa esse horário deseja substituir?",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dataInstance.getDataTask().get(checkTime).setTitle(title);
+                                dataInstance.getDataTask().get(checkTime).description = description;
+                                dataInstance.getDataTask().get(checkTime).event.date = new String[]{date, time};
+                                Intent it_aEvent = new Intent();
+                                it_aEvent.putExtra("NewEvent", dataInstance);
+                                setResult(RESULT_FIRST_USER, it_aEvent);
+                                finish();
+                            }
+                        }, null);
+
+            }else {
+                Task newEvent = new Task(title, dataInstance.log); //falta log usuario
+                newEvent.description = description;
+                newEvent.createEvent(new String[]{date, time});
+                dataInstance.getDataTask().add(newEvent);
+                Intent it_aEvent = new Intent();
+                it_aEvent.putExtra("NewEvent", dataInstance);
+                setResult(RESULT_FIRST_USER, it_aEvent);
+                finish();
+            }
         }
     }
 

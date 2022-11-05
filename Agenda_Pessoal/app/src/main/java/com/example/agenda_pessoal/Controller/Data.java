@@ -3,7 +3,11 @@ package com.example.agenda_pessoal.Controller;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Data implements Parcelable {
     private ArrayList<User> dataUser = new ArrayList<User>();
@@ -40,6 +44,21 @@ public class Data implements Parcelable {
             return new Data[size];
         }
     };
+
+    public Integer checkEventTime(String date, String time) {
+        Integer id = null;
+        for (int i = 0; i < dataTask.size(); i++) {
+            Task item = dataTask.get(i);
+            if (item.isEvent() && item.getOwner(log)
+                    && !item.finished && date.equals(item.event.date[0])
+                    && time.equals(item.event.date[1])
+            ){
+               id = i;
+
+            }
+        }
+        return id;
+    }
 
     public void Update(Data updatedData) {
         dataUser.clear();
@@ -85,6 +104,9 @@ public class Data implements Parcelable {
     }
 
     public void initializeValues() {
+        String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Date time = new Date();
+
         dataUser.add(testUser("Lucas", "teste@teste.com.br", "1298875748", "123"));
         dataUser.add(testUser("Leandro", "teste2@teste.com.br", "4845456484", "123"));
 
@@ -103,7 +125,7 @@ public class Data implements Parcelable {
                 "Trabalho Enari",
                 0,
                 "",
-                new String[]{"23/10/2022", "06:00"}));
+                new String[]{localDate, "06:00"}));
         dataTask.add(testEvent(
                 "Acelera",
                 0,
@@ -124,7 +146,6 @@ public class Data implements Parcelable {
                 ""));
         dataRelationship.add(new Relationship(0, 1));
         dataRelationship.add(new Relationship(1, 0));
-
 
 
     }

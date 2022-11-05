@@ -42,7 +42,7 @@
             >
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_edit_event"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:fontFamily="sans-serif"

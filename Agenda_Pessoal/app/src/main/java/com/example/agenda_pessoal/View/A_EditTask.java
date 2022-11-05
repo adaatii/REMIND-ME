@@ -50,10 +50,8 @@ public class A_EditTask extends AppCompatActivity implements Constants {
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else {
-            Task upTask = dataInstance.getDataTask().get(position);
-
-            upTask.setTitle(title);
-            upTask.description = description;
+            dataInstance.getDataTask().get(position).setTitle(title);
+            dataInstance.getDataTask().get(position).description = description;
 
             Intent it_aViewTask = new Intent();
             it_aViewTask.putExtra("EditedTask", dataInstance);

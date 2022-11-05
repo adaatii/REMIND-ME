@@ -24,12 +24,13 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 
 public class A_EditEvent extends AppCompatActivity implements Constants {
     Data dataInstance;
     Integer position;
     EditText et_titleEditEvent,et_descriptionEditEvent;
-    TextView tv_dateEditEvent, tv_timeEditEvent;
+    TextView tv_dateEditEvent, tv_timeEditEvent, tv_edit_event;
     private int year, month, day;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
         et_descriptionEditEvent = findViewById(R.id.et_descriptionEditEvent);
         tv_dateEditEvent = findViewById(R.id.et_dateEditEvent);
         tv_timeEditEvent = findViewById(R.id.et_timeEditEvent);
+        tv_edit_event = findViewById(R.id.tv_edit_event);
 
 
 
@@ -112,11 +114,10 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else {
-            Task upEvent = dataInstance.getDataTask().get(position);
 
-            upEvent.setTitle(title);
-            upEvent.description = description;
-            upEvent.event.date = new String[]{date, time};
+            dataInstance.getDataTask().get(position).setTitle(title);
+            dataInstance.getDataTask().get(position).description = description;
+            dataInstance.getDataTask().get(position).event.date = new String[]{date, time};
 
             Intent it_aViewEvent = new Intent();
             it_aViewEvent.putExtra("EditedEvent", dataInstance);
@@ -140,9 +141,13 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
             tv_timeEditEvent.setText(event.event.date[1]);
         }else{
             String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            Date time = new Date();
+            String localTime = new SimpleDateFormat("HH:mm").format(time);
             dataInstance.getDataTask().get(position).event = new Event(new String[] {localDate, "00:00"});
             tv_dateEditEvent.setText(localDate);
-            tv_timeEditEvent.setText("00:00");
+            tv_timeEditEvent.setText(localTime);
+            tv_edit_event.setText("Transformando\n em Evento");
+
         }
     }
 }
