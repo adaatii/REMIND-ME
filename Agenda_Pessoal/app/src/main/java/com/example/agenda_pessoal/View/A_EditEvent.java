@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -29,9 +32,11 @@ import java.util.Date;
 public class A_EditEvent extends AppCompatActivity implements Constants {
     Data dataInstance;
     Integer position;
-    EditText et_titleEditEvent,et_descriptionEditEvent;
+    EditText et_titleEditEvent, et_descriptionEditEvent;
     TextView tv_dateEditEvent, tv_timeEditEvent, tv_edit_event;
     private int year, month, day;
+    RadioButton rbtn_hight_priority_edit_event, rbtn_medium_priority_edit_event, rbtn_low_priority_edit_event, rbtn_no_priority_edit_event;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +51,10 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
         tv_timeEditEvent = findViewById(R.id.et_timeEditEvent);
         tv_edit_event = findViewById(R.id.tv_edit_event);
 
-
+        rbtn_hight_priority_edit_event = findViewById(R.id.rbtn_hight_priority_edit_event);
+        rbtn_medium_priority_edit_event = findViewById(R.id.rbtn_medium_priority_edit_event);
+        rbtn_low_priority_edit_event = findViewById(R.id.rbtn_low_priority_edit_event);
+        rbtn_no_priority_edit_event = findViewById(R.id.rbtn_no_priority_edit_event);
 
         setInfoEvent();
 
@@ -65,9 +73,20 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
         });
     }
 
-    public void alert(String title, String message){
+    public void alert(String title, String message) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle(title).setMessage(message).setPositiveButton("OK", null);
+        alertDialog.show();
+    }
+
+    public void changeEventAlert(
+            String title,
+            String message,
+            DialogInterface.OnClickListener accept,
+            DialogInterface.OnClickListener refuse
+    ) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("SIM", accept).setNegativeButton("NÃO", refuse);
         alertDialog.show();
     }
 
@@ -104,18 +123,86 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
         timePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
     }
 
-    public void updateEvent(View view){
+    public void updateEvent(View view) {
         String date = tv_dateEditEvent.getText().toString();
         String time = tv_timeEditEvent.getText().toString();
         String title = et_titleEditEvent.getText().toString();
         String description = et_descriptionEditEvent.getText().toString();
 
-        if (title.isEmpty() || date.isEmpty() || time.isEmpty()){
+        if (title.isEmpty()
+                || date.isEmpty()
+                || time.isEmpty()
+                || !rbtn_hight_priority_edit_event.isChecked()
+                && !rbtn_medium_priority_edit_event.isChecked()
+                && !rbtn_low_priority_edit_event.isChecked()
+                && !rbtn_no_priority_edit_event.isChecked()) {
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
-        }else {
+        } else {
+            //Quando faz a verificação se existe evento e faz a alteração, o evento é alterado porém o anterior já cadastrado continua visivel;
+           /*Integer checkTime = dataInstance.checkEventTime(date, time);
+            if (checkTime != null) {
+                String titleEvent = dataInstance.getDataTask().get(checkTime).getTitle();
+                Integer priorityEventint = dataInstance.getDataTask().get(checkTime).priority;
+                String priorityEvent = " ";
+                switch (priorityEventint) {
+                    case 0:
+                        priorityEvent = "Alta";
+                        break;
+                    case 1:
+                        priorityEvent = "Média";
+                        break;
+                    case 2:
+                        priorityEvent = "Baixa";
+                        break;
+                    case 3:
+                        priorityEvent = "Nula";
+                        break;
+                    default:
+                        priorityEvent = "Nula";
+                        break;
+                }
+                changeEventAlert(
+                        "Sobrescrever evento",
+                        "O evento " + titleEvent + " de prioridade " + priorityEvent + " já ocupa esse horário deseja substituir?",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Integer priority = 3;
+                                if (rbtn_hight_priority_edit_event.isChecked()) {
+                                    priority = 0;
+                                } else if (rbtn_medium_priority_edit_event.isChecked()) {
+                                    priority = 1;
+                                } else if (rbtn_low_priority_edit_event.isChecked()) {
+                                    priority = 2;
+                                } else if (rbtn_no_priority_edit_event.isChecked()) {
+                                    priority = 3;
+                                }
+                                dataInstance.getDataTask().get(checkTime).setTitle(title);
+                                dataInstance.getDataTask().get(checkTime).priority = priority;
+                                dataInstance.getDataTask().get(checkTime).description = description;
+                                dataInstance.getDataTask().get(checkTime).event.date = new String[]{date, time};
+
+                                Intent it_aEvent = new Intent();
+                                it_aEvent.putExtra("EditedEvent", dataInstance);
+                                setResult(RESULT_FIRST_USER, it_aEvent);
+                                finish();
+                            }
+                        }, null);
+            }else{*/
+            Integer priority = 3;
+            if (rbtn_hight_priority_edit_event.isChecked()) {
+                priority = 0;
+            } else if (rbtn_medium_priority_edit_event.isChecked()) {
+                priority = 1;
+            } else if (rbtn_low_priority_edit_event.isChecked()) {
+                priority = 2;
+            } else if (rbtn_no_priority_edit_event.isChecked()) {
+                priority = 3;
+            }
 
             dataInstance.getDataTask().get(position).setTitle(title);
+            dataInstance.getDataTask().get(position).priority = priority;
             dataInstance.getDataTask().get(position).description = description;
             dataInstance.getDataTask().get(position).event.date = new String[]{date, time};
 
@@ -124,9 +211,10 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
             setResult(RESULT_FIRST_USER, it_aViewEvent);
             finish();
         }
+        //}
     }
 
-    public void returnEditEventToViewEvent(View v){
+    public void returnEditEventToViewEvent(View v) {
         Intent it_aViewEvent = new Intent();
         setResult(RESULT_DESTROY, it_aViewEvent);
         finish();
@@ -139,11 +227,11 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
         if (event.isEvent()) {
             tv_dateEditEvent.setText(event.event.date[0]);
             tv_timeEditEvent.setText(event.event.date[1]);
-        }else{
+        } else {
             String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             Date time = new Date();
             String localTime = new SimpleDateFormat("HH:mm").format(time);
-            dataInstance.getDataTask().get(position).event = new Event(new String[] {localDate, "00:00"});
+            dataInstance.getDataTask().get(position).event = new Event(new String[]{localDate, "00:00"});
             tv_dateEditEvent.setText(localDate);
             tv_timeEditEvent.setText(localTime);
             tv_edit_event.setText("Transformando\n em Evento");

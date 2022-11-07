@@ -49,7 +49,6 @@ public class TaskNode {
                     Integer.parseInt(splitTime[0]),
                     Integer.parseInt(splitTime[1]),
                     0
-
             );
             check = !addTime.isAfter(pointerTime);
             Log.d("TAG Data three", String.valueOf(check));

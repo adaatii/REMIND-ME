@@ -55,10 +55,10 @@ public class A_Event extends AppCompatActivity implements Constants {
         ArrayList<Task> task = dataInstance.getDataTask();
         TaskTree taskTree = new TaskTree();
         // Ordenação do TaskData (dataInstance.getDataTask())
-        for (int i = 0; i < task.size(); i++) {
-            Task item = task.get(i);
+        for (int id = 0; id < task.size(); id++) {
+            Task item = task.get(id);
             if (item.isEvent() && item.getOwner(dataInstance.log)) {
-                taskTree.add(i, item.event.date, localDate);
+                taskTree.add(id, item.event.date, localDate);
             }
         }
         adapterEvent = new RecyclerAdapterEvent(dataInstance.getDataTask(), taskTree.sort(), A_Event.this);
