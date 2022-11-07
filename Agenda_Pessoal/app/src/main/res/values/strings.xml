@@ -29,4 +29,7 @@
     <string name="crie_sua_conta">Crie sua conta!</string>
     <string name="ja_possui_registro">Já possui registro?</string>
     <string name="clique_aqui">Clique aqui!</string>
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

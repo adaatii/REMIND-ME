@@ -27,7 +27,6 @@ public class A_Register extends AppCompatActivity implements Constants {
     EditText et_password;
     EditText et_confPassword;
     Button btn_cadastro;
-    Button btn_voltar;
     Data dataInstance;
     String lastChar = " ";
 

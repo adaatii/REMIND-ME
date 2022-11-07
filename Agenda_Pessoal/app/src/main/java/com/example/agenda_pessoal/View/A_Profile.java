@@ -10,12 +10,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
+import com.example.agenda_pessoal.Controller.Task;
 import com.example.agenda_pessoal.Controller.User;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
-public class A_Profile extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class A_Profile extends AppCompatActivity implements Constants {
     Data dataInstance;
     TextView tv_profileName, tv_profileEmail, tv_profilePhone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,12 @@ public class A_Profile extends AppCompatActivity {
         tv_profilePhone.setText(user.phone);
     }
 
+    public void openEditProfileScreen(View v) {
+        Intent it_aEditProfile = new Intent(this, A_EditProfile.class);
+        it_aEditProfile.putExtra("Data", dataInstance);
+        startActivityForResult(it_aEditProfile, EDIT_PROFILE_ACTIVITY_REQUEST_CODE);
+    }
+
     public void returnProfileToEvent(View view) {
         Intent it_aEvent = new Intent();
         it_aEvent.putExtra("Data", dataInstance);
@@ -47,4 +58,21 @@ public class A_Profile extends AppCompatActivity {
         finish();
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("resultCode", Integer.toString(resultCode));
+        if (requestCode == EDIT_PROFILE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_FIRST_USER) {
+                Data dataSerialize = data.getExtras().getParcelable("EditedUser");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("EditedUser"));
+
+                setInfoProfile();
+            }
+        }
+    }
+
+
 }
