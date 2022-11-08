@@ -14,9 +14,10 @@ import android.widget.EditText;
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.Task;
 import com.example.agenda_pessoal.Controller.User;
+import com.example.agenda_pessoal.Model.Constants;
 import com.example.agenda_pessoal.R;
 
-public class A_EditProfile extends AppCompatActivity {
+public class A_EditProfile extends AppCompatActivity implements Constants {
     Data dataInstance;
     EditText et_name_edit_profile, et_email_edit_profile, et_phone_edit_profile, et_password_edit_profile, et_confPassword_edit_profile;
     String nome, email, telefone, password, confPassword;
@@ -126,5 +127,11 @@ public class A_EditProfile extends AppCompatActivity {
                 alert("Edição", "Email Inválido");
             }
         }
+    }
+
+    public void returnToProfile(View v) {
+        Intent it_aProfile = new Intent();
+        setResult(RESULT_DESTROY, it_aProfile);
+        finish();
     }
 }
