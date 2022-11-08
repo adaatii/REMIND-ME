@@ -65,6 +65,10 @@ public class A_Home extends AppCompatActivity implements Constants {
                 Intent it_aRegister = new Intent(this, A_Register.class);
                 it_aRegister.putExtra("Data", dataInstance);
                 startActivityForResult(it_aRegister, REGISTER_ACTIVITY_REQUEST_CODE);
+            } else if(resultCode == RESULT_DESTROY){
+                Data dataSerialize = data.getExtras().getParcelable("Data");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("Data"));
             }
         }
 

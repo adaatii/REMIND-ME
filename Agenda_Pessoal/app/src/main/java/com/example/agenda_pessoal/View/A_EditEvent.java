@@ -41,6 +41,7 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_event);
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
         position = getIntent().getExtras().getInt("Position");
@@ -182,6 +183,7 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
                                 dataInstance.getDataTask().get(checkTime).priority = priority;
                                 dataInstance.getDataTask().get(checkTime).description = description;
                                 dataInstance.getDataTask().get(checkTime).event.date = new String[]{date, time};
+
 
                                 Intent it_aEvent = new Intent();
                                 it_aEvent.putExtra("EditedEvent", dataInstance);

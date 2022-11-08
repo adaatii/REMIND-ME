@@ -29,6 +29,7 @@ public class A_NewTask extends AppCompatActivity implements Constants {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
 
         dataInstance = getIntent().getExtras().getParcelable("Data");

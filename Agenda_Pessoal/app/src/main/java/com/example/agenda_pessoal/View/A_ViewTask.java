@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ public class A_ViewTask extends AppCompatActivity implements Constants {
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
         position = getIntent().getExtras().getInt("Position");
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
         tv_titleViewTask = findViewById(R.id.tv_titleViewTask);
         tv_descriptionViewTask = findViewById(R.id.tv_descriptionViewTask);

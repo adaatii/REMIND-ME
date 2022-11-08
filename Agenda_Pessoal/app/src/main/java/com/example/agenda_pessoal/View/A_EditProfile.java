@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,6 +31,7 @@ public class A_EditProfile extends AppCompatActivity implements Constants {
 
         dataInstance = getIntent().getExtras().getParcelable("Data");
         Log.d("OpenSerialize", dataInstance.serialize());
+        getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
         et_name_edit_profile = findViewById(R.id.et_name_edit_profile);
         et_email_edit_profile = findViewById(R.id.et_email_edit_profile);
@@ -83,6 +85,8 @@ public class A_EditProfile extends AppCompatActivity implements Constants {
         et_name_edit_profile.setText(user.name);
         et_email_edit_profile.setText(user.getEmail());
         et_phone_edit_profile.setText(user.phone);
+        et_password_edit_profile.setText(user.getPassword());
+        et_confPassword_edit_profile.setText(user.getPassword());
     }
 
     public void editUser(View view) {

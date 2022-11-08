@@ -87,12 +87,14 @@ public class A_Login extends AppCompatActivity implements Constants {
 
     public void returnToHome(View v){
         Intent it_aHome = new Intent();
+        it_aHome.putExtra("Data", dataInstance);
         setResult(RESULT_DESTROY, it_aHome);
         finish();
     }
 
     public void openRegister(View v){
         Intent it_aHome = new Intent();
+        it_aHome.putExtra("Data", dataInstance);
         setResult(RESULT_OK, it_aHome);
         finish();
     }

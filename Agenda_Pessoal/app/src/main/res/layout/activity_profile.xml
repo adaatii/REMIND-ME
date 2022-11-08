@@ -92,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:text="Email" />
 
             <TextView
@@ -99,6 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+
                 android:text="@string/email"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -108,7 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="telefone" />
+                android:layout_marginTop="10dp"
+                android:text="Telefone" />
 
             <TextView
                 android:id="@+id/tv_profilePhone"
@@ -117,7 +120,8 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/telefone"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+               />
         </LinearLayout>
 
 

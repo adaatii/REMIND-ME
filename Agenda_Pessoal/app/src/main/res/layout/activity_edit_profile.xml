@@ -142,25 +142,6 @@
                 app:strokeColor="@color/azul"
                 app:strokeWidth="2dp" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/ja_possui_registro"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_alreadyRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:minHeight="48dp"
-                android:onClick="abrirLogin"
-                android:text="@string/clique_aqui"
-                android:textColor="@color/dark_blue"
-                android:textStyle="bold"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
