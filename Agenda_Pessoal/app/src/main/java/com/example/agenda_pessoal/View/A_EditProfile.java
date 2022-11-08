@@ -98,7 +98,6 @@ public class A_EditProfile extends AppCompatActivity implements Constants {
                 || password.isEmpty() || confPassword.isEmpty()) {
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         } else {
-
             if (user.authenticateEmail(email)) {
                 boolean emailUsed = false;
                 for (int i = 0; i < dataInstance.getDataUser().size(); i++) {

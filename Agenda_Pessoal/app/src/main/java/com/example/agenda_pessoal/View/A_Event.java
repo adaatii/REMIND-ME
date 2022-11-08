@@ -1,10 +1,12 @@
 package com.example.agenda_pessoal.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -135,13 +137,27 @@ public class A_Event extends AppCompatActivity implements Constants {
         dialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
         dialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
     }
-
+    public void logOutAlert(
+            String title,
+            String message,
+            DialogInterface.OnClickListener accept,
+            DialogInterface.OnClickListener refuse
+    ) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("SIM", accept).setNegativeButton("NÃO", refuse);
+        alertDialog.show();
+    }
     public void returnToLogin(View view){
-        dataInstance.log = null;
-        Intent it_aLogin = new Intent();
-        it_aLogin.putExtra("Data", dataInstance);
-        setResult(RESULT_OK, it_aLogin);
-        finish();
+        logOutAlert("Logout", "Deseja realizar o Logout ?", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dataInstance.log = null;
+                Intent it_aLogin = new Intent();
+                it_aLogin.putExtra("Data", dataInstance);
+                setResult(RESULT_OK, it_aLogin);
+                finish();
+            }
+        }, null);
     }
 
     @Override

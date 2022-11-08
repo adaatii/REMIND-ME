@@ -90,8 +90,8 @@ public class Data implements Parcelable {
         return user;
     }
 
-    private Task testEvent(String title, int owner, String description, String[] dateTime) {
-        Task event = new Task(title, owner,1);
+    private Task testEvent(String title, int owner, String description, String[] dateTime,Integer priority) {
+        Task event = new Task(title, owner, priority);
         event.description = description;
         event.createEvent(dateTime);
         return event;
@@ -106,44 +106,52 @@ public class Data implements Parcelable {
     public void initializeValues() {
         String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Date time = new Date();
+        String localTime = new SimpleDateFormat("HH:mm").format(time);
 
         dataUser.add(testUser("Lucas", "teste@teste.com.br", "1298875748", "123"));
         dataUser.add(testUser("Leandro", "teste2@teste.com.br", "4845456484", "123"));
 
         dataTask.add(testEvent(
-                "Dor e sofrimento",
+                "Prova de ED",
                 0,
-                "Na casinha",
-                new String[]{"03/11/2022", "06:00"}));
-
-        dataTask.add(testTask(
-                "Reunião no Discord",
-                0,
-                "trabalho de ESII"));
-
+                "Laboratório 4",
+                new String[]{localDate, "06:00"},
+                0)
+        );
         dataTask.add(testEvent(
-                "Trabalho Enari",
+                "Médico Cardiologista",
                 0,
-                "",
-                new String[]{localDate, "06:00"}));
+                "Rua Sete de Setembro",
+                new String[]{localDate, "18:00"},
+                1));
         dataTask.add(testEvent(
                 "Acelera",
                 0,
                 "Fatec Cruzeiro",
-                new String[]{"23/10/2022", "08:00"}));
-
-        dataTask.add(testTask(
-                "teste",
+                new String[]{localDate, "08:00"},
+                2));
+        dataTask.add(testEvent(
+                "Cinema",
                 0,
-                "trabalho de ESII"));
+                "Harry Potter",
+                new String[]{localDate, "21:30"},
+                3));
         dataTask.add(testTask(
-                "teste2",
+                "Trocar óleo",
+                0,
+                "faltam 500km para atingir o km de troca"));
+        dataTask.add(testTask(
+                "Compra Leite",
                 0,
                 ""));
         dataTask.add(testTask(
-                "teste3",
+                "Comprar Fralda",
                 0,
                 ""));
+        dataTask.add(testTask(
+                "Comprar maçãs",
+                0,
+                " "));
         dataRelationship.add(new Relationship(0, 1));
         dataRelationship.add(new Relationship(1, 0));
 
