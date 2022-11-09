@@ -1,15 +1,19 @@
 package com.example.agenda_pessoal.Model.Adapter;
 
+import static com.example.agenda_pessoal.Model.Constants.PRIORITY_LIST;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agenda_pessoal.Controller.Task;
@@ -73,6 +77,7 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
 
         private TextView titleTask, descriptionTask;
         private CardView cardViewTask;
+        private ImageView priority;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,11 +85,14 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
             titleTask = itemView.findViewById(R.id.tv_titleTask);
             descriptionTask = itemView.findViewById(R.id.tv_descriptionTask);
             cardViewTask = itemView.findViewById(R.id.card_viewTask);
+            priority = itemView.findViewById(R.id.ImageView_Task);
         }
 
         public void bind(Task item){
             titleTask.setText(item.getTitle());
             descriptionTask.setText(item.description);
+            priority.setImageResource(PRIORITY_LIST[item.priority][0]);
+            cardViewTask.setCardBackgroundColor(ContextCompat.getColor(context, PRIORITY_LIST[item.priority][1]));
         }
     }
 

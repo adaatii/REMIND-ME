@@ -1,7 +1,9 @@
 package com.example.agenda_pessoal.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -42,7 +44,16 @@ public class A_ViewEvent extends AppCompatActivity implements Constants {
 
 
     }
-
+    public void optionAlert(
+            String title,
+            String message,
+            DialogInterface.OnClickListener accept,
+            DialogInterface.OnClickListener refuse
+    ) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("SIM", accept).setNegativeButton("NÃO", refuse);
+        alertDialog.show();
+    }
     public void openEditEvent(View view){
         Intent it_aEditEvent = new Intent(this, A_EditEvent.class);
         it_aEditEvent.putExtra("Data", dataInstance);
@@ -55,6 +66,33 @@ public class A_ViewEvent extends AppCompatActivity implements Constants {
         it_aEvent.putExtra("Data", dataInstance);
         setResult(RESULT_FIRST_USER, it_aEvent);
         finish();
+    }
+
+    public void deleteEvent(View view){
+        optionAlert("Deletar Evento", "Deseja realmente deletar o evento ?", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dataInstance.getDataTask().get(position).finished = true;
+                Intent it_aEvent = new Intent();
+                it_aEvent.putExtra("Data", dataInstance);
+                setResult(RESULT_FIRST_USER, it_aEvent);
+                finish();
+            }
+        }, null);
+
+    }
+
+    public void setFinishedEvent(View view){
+        optionAlert("Finalizar Evento", "Deseja finalizar o evento ?", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dataInstance.getDataTask().get(position).finished = true;
+                Intent it_aEvent = new Intent();
+                it_aEvent.putExtra("Data", dataInstance);
+                setResult(RESULT_FIRST_USER, it_aEvent);
+                finish();
+            }
+        }, null);
 
     }
 
@@ -76,6 +114,13 @@ public class A_ViewEvent extends AppCompatActivity implements Constants {
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("EditedEvent"));
 
+                setInfoEvent();
+
+            }else if (resultCode == RESULT_OK) {
+                Data dataSerialize = data.getExtras().getParcelable("EditedEvent");
+                Log.d("OpenSerialize", dataSerialize.serialize());
+                dataInstance.Update(data.getExtras().getParcelable("EditedEvent"));
+                position = data.getExtras().getInt("checkTime");
                 setInfoEvent();
 
             }

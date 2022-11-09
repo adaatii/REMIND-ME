@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import com.example.agenda_pessoal.Controller.Data;
 import com.example.agenda_pessoal.Controller.Event;
@@ -22,6 +23,7 @@ public class A_EditTask extends AppCompatActivity implements Constants {
     Data dataInstance;
     Integer position;
     EditText et_titleEditTask,et_descriptionEditTask;
+    RadioButton rbtn_hight_priority_edit_task, rbtn_medium_priority_edit_task, rbtn_low_priority_edit_task, rbtn_no_priority_edit_task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,11 @@ public class A_EditTask extends AppCompatActivity implements Constants {
 
         et_titleEditTask = findViewById(R.id.et_titleEditTask);
         et_descriptionEditTask = findViewById(R.id.et_descriptionEditTask);
+
+        rbtn_hight_priority_edit_task = findViewById(R.id.rbtn_hight_priority_edit_task);
+        rbtn_medium_priority_edit_task = findViewById(R.id.rbtn_medium_priority_edit_task);
+        rbtn_low_priority_edit_task = findViewById(R.id.rbtn_low_priority_edit_task);
+        rbtn_no_priority_edit_task = findViewById(R.id.rbtn_no_priority_edit_task);
 
         setInfoTask();
     }
@@ -48,12 +55,26 @@ public class A_EditTask extends AppCompatActivity implements Constants {
         String title = et_titleEditTask.getText().toString();
         String description = et_descriptionEditTask.getText().toString();
 
-        if (title.isEmpty()){
+        if (title.isEmpty() || !rbtn_hight_priority_edit_task.isChecked()
+                && !rbtn_medium_priority_edit_task.isChecked()
+                && !rbtn_low_priority_edit_task.isChecked()
+                && !rbtn_no_priority_edit_task.isChecked()){
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else {
+            Integer priority = 3;
+            if (rbtn_hight_priority_edit_task.isChecked()) {
+                priority = 0;
+            } else if (rbtn_medium_priority_edit_task.isChecked()) {
+                priority = 1;
+            } else if (rbtn_low_priority_edit_task.isChecked()) {
+                priority = 2;
+            } else if (rbtn_no_priority_edit_task.isChecked()) {
+                priority = 3;
+            }
             dataInstance.getDataTask().get(position).setTitle(title);
             dataInstance.getDataTask().get(position).description = description;
+            dataInstance.getDataTask().get(position).priority = priority;
 
             Intent it_aViewTask = new Intent();
             it_aViewTask.putExtra("EditedTask", dataInstance);

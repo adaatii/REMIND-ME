@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TimePicker;
 
 import com.example.agenda_pessoal.Controller.Data;
@@ -24,6 +25,7 @@ import java.util.Calendar;
 public class A_NewTask extends AppCompatActivity implements Constants {
     Data dataInstance;
     EditText et_titleNewTask,et_descriptionNewTask;
+    private RadioButton rbtn_hight_priority_new_task, rbtn_medium_priority_new_task, rbtn_low_priority_new_task, rbtn_no_priority_new_task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,10 @@ public class A_NewTask extends AppCompatActivity implements Constants {
 
         et_titleNewTask = findViewById(R.id.et_titleNewTask);
         et_descriptionNewTask = findViewById(R.id.et_descriptionNewTask);
+        rbtn_hight_priority_new_task = findViewById(R.id.rbtn_hight_priority_new_task);
+        rbtn_medium_priority_new_task = findViewById(R.id.rbtn_medium_priority_new_task);
+        rbtn_low_priority_new_task = findViewById(R.id.rbtn_low_priority_new_task);
+        rbtn_no_priority_new_task = findViewById(R.id.rbtn_no_priority_new_task);
     }
 
     public void alert(String title, String message){
@@ -48,11 +54,25 @@ public class A_NewTask extends AppCompatActivity implements Constants {
         String title = et_titleNewTask.getText().toString();
         String description = et_descriptionNewTask.getText().toString();
 
-        if (title.isEmpty()){
+        if (title.isEmpty()
+                || !rbtn_hight_priority_new_task.isChecked()
+                && !rbtn_medium_priority_new_task.isChecked()
+                && !rbtn_low_priority_new_task.isChecked()
+                && !rbtn_no_priority_new_task.isChecked()){
             //Title não deve estar vazio
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         }else{
-            Task newTask = new Task(title, dataInstance.log,1);//RadioBTN
+            Integer priority = 3;
+            if (rbtn_hight_priority_new_task.isChecked()) {
+                priority = 0;
+            } else if (rbtn_medium_priority_new_task.isChecked()) {
+                priority = 1;
+            } else if (rbtn_low_priority_new_task.isChecked()) {
+                priority = 2;
+            } else if (rbtn_no_priority_new_task.isChecked()) {
+                priority = 3;
+            }
+            Task newTask = new Task(title, dataInstance.log,priority);//RadioBTN
             newTask.description = description;
             dataInstance.getDataTask().add(newTask);
             Intent it_aTask = new Intent();

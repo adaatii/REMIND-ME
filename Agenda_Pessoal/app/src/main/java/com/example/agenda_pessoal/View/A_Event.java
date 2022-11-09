@@ -59,7 +59,7 @@ public class A_Event extends AppCompatActivity implements Constants {
         // Ordenação do TaskData (dataInstance.getDataTask())
         for (int id = 0; id < task.size(); id++) {
             Task item = task.get(id);
-            if (item.isEvent() && item.getOwner(dataInstance.log)) {
+            if (item.isEvent() && item.getOwner(dataInstance.log) && !item.finished) {
                 taskTree.add(id, item.event.date, localDate);
             }
         }
@@ -177,7 +177,7 @@ public class A_Event extends AppCompatActivity implements Constants {
                 // Ordenação do TaskData (dataInstance.getDataTask())
                 for (int i = 0; i < task.size(); i++) {
                     Task item = task.get(i);
-                    if (item.isEvent() && item.getOwner(dataInstance.log)) {
+                    if (item.isEvent() && item.getOwner(dataInstance.log) && !item.finished) {
                         taskTree.add(i, item.event.date, localDate);
                     }
                 }
@@ -211,7 +211,7 @@ public class A_Event extends AppCompatActivity implements Constants {
                 // Ordenação do TaskData (dataInstance.getDataTask())
                 for (int i = 0; i < task.size(); i++) {
                     Task item = task.get(i);
-                    if (item.isEvent() && item.getOwner(dataInstance.log)) {
+                    if (item.isEvent() && item.getOwner(dataInstance.log) && !item.finished) {
                         taskTree.add(i, item.event.date, localDate);
                     }
                 }
@@ -237,7 +237,7 @@ public class A_Event extends AppCompatActivity implements Constants {
                 // Ordenação do TaskData (dataInstance.getDataTask())
                 for (int i = 0; i < task.size(); i++) {
                     Task item = task.get(i);
-                    if (item.isEvent() && item.getOwner(dataInstance.log)) {
+                    if (item.isEvent() && item.getOwner(dataInstance.log) && !item.finished) {
                         taskTree.add(i, item.event.date, localDate);
                     }
                 }

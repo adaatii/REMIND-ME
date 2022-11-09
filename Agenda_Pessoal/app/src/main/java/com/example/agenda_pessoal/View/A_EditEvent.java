@@ -141,8 +141,8 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
             alert("Campos Obrigatórios", "Preencha todos os campos Obrigatórios");
         } else {
             //Quando faz a verificação se existe evento e faz a alteração, o evento é alterado porém o anterior já cadastrado continua visivel;
-           /*Integer checkTime = dataInstance.checkEventTime(date, time);
-            if (checkTime != null) {
+           Integer checkTime = dataInstance.checkEventTime(date, time);
+            if (checkTime != null && !checkTime.equals(position)) {
                 String titleEvent = dataInstance.getDataTask().get(checkTime).getTitle();
                 Integer priorityEventint = dataInstance.getDataTask().get(checkTime).priority;
                 String priorityEvent = " ";
@@ -183,15 +183,16 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
                                 dataInstance.getDataTask().get(checkTime).priority = priority;
                                 dataInstance.getDataTask().get(checkTime).description = description;
                                 dataInstance.getDataTask().get(checkTime).event.date = new String[]{date, time};
+                                dataInstance.getDataTask().get(position).finished = true;
 
-
-                                Intent it_aEvent = new Intent();
-                                it_aEvent.putExtra("EditedEvent", dataInstance);
-                                setResult(RESULT_FIRST_USER, it_aEvent);
+                                Intent it_aViewEvent = new Intent();
+                                it_aViewEvent.putExtra("EditedEvent", dataInstance);
+                                it_aViewEvent.putExtra("checkTime", checkTime);
+                                setResult(RESULT_OK, it_aViewEvent);
                                 finish();
                             }
                         }, null);
-            }else{*/
+            }else{
             Integer priority = 3;
             if (rbtn_hight_priority_edit_event.isChecked()) {
                 priority = 0;
@@ -213,7 +214,7 @@ public class A_EditEvent extends AppCompatActivity implements Constants {
             setResult(RESULT_FIRST_USER, it_aViewEvent);
             finish();
         }
-        //}
+        }
     }
 
     public void returnEditEventToViewEvent(View v) {

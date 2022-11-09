@@ -97,8 +97,8 @@ public class Data implements Parcelable {
         return event;
     }
 
-    private Task testTask(String title, int owner, String description) {
-        Task task = new Task(title, owner,2);
+    private Task testTask(String title, int owner, String description, Integer priority) {
+        Task task = new Task(title, owner,priority);
         task.description = description;
         return task;
     }
@@ -139,19 +139,22 @@ public class Data implements Parcelable {
         dataTask.add(testTask(
                 "Trocar óleo",
                 0,
-                "faltam 500km para atingir o km de troca"));
+                "faltam 500km para atingir o km de troca",
+                2));
         dataTask.add(testTask(
                 "Compra Leite",
                 0,
-                ""));
+                "",
+                1));
         dataTask.add(testTask(
                 "Comprar Fralda",
                 0,
-                ""));
+                "",
+                3));
         dataTask.add(testTask(
                 "Comprar maçãs",
                 0,
-                " "));
+                " ",0));
         dataRelationship.add(new Relationship(0, 1));
         dataRelationship.add(new Relationship(1, 0));
 

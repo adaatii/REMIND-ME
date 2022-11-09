@@ -37,14 +37,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="451dp"
+            android:layout_height="367dp"
             android:orientation="vertical"
             >
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="209dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="@string/editar_tarefa"
@@ -85,10 +85,63 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Seleção de prioridade *"
+            android:textAlignment="center"
+            android:textColor="#D5000000"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/rg_newTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbtn_hight_priority_edit_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Alta" />
+
+            <RadioButton
+                android:id="@+id/rbtn_medium_priority_edit_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="7dp"
+                android:text="Média" />
+
+            <RadioButton
+                android:id="@+id/rbtn_low_priority_edit_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="14dp"
+                android:text="Baixa" />
+
+            <RadioButton
+                android:id="@+id/rbtn_no_priority_edit_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Nula" />
+
+        </RadioGroup>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="87dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
 
             <Button
                 android:id="@+id/btn_editTask"
