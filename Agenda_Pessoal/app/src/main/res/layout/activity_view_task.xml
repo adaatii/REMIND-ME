@@ -73,6 +73,24 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
 
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="54dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="2dp"
+
+                android:layout_marginBottom="1dp"
+                android:backgroundTint="@color/azul"
+                android:onClick="deleteTask"
+                app:icon="@drawable/delete_forever"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintStart_toEndOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -119,7 +137,6 @@
                 android:layout_gravity="bottom|end"
                 android:layout_marginBottom="30dp"
                 android:orientation="vertical">
-
                 <Button
                     android:id="@+id/btn_definirComoEvento"
                     android:layout_width="wrap_content"
@@ -128,6 +145,15 @@
                     android:backgroundTint="@color/azul"
                     android:onClick="changeTaskToEvent"
                     android:text="Definir como Evento" />
+
+                <Button
+                    android:id="@+id/btn_finalizaTarefa"
+                    android:layout_width="208dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/azul"
+                    android:onClick="finishTask"
+                    android:text="Finalizar Tarefa" />
             </LinearLayout>
 
         </LinearLayout>

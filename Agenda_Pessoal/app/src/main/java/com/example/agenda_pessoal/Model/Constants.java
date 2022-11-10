@@ -27,7 +27,9 @@ public interface Constants {
             new int[]{R.drawable.ic_hight_priority, R.color.high_priority},
             new int[]{R.drawable.ic_medium_priority, R.color.medium_priority},
             new int[]{R.drawable.ic_low_priority, R.color.low_priority},
-            new int[]{R.drawable.ic_clock, R.color.default_priority}
+            new int[]{R.drawable.ic_clock, R.color.default_priority},
+            new int[]{R.drawable.ic_baseline_task_alt_24, R.color.finished_task}
+
     };
 
 }

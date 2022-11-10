@@ -118,7 +118,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/azul"
                 android:onClick="openTaskScreen"
-                app:icon="@drawable/ic_baseline_task_alt_24"
+                app:icon="@drawable/ic_baseline_assignment_turned_in_24"
                 app:iconGravity="textEnd"
                 tools:ignore="SpeakableTextPresentCheck" />
 

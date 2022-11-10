@@ -198,7 +198,7 @@
                 android:layout_gravity="center"
                 android:backgroundTint="@color/azul"
                 android:onClick="createNewEvent"
-                android:text="@string/cadastrar"
+                android:text="@string/salvar"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/azul"
                 app:strokeWidth="2dp" />

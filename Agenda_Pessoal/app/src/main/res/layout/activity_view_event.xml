@@ -78,8 +78,8 @@
                 android:layout_marginEnd="9dp"
                 android:layout_marginBottom="1dp"
                 android:backgroundTint="@color/azul"
-                android:onClick="setFinishedEvent"
-                app:icon="@drawable/ic_baseline_delete_outline_24"
+                android:onClick="deleteEvent"
+                app:icon="@drawable/delete_forever"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button2"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
@@ -91,7 +91,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="590dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -134,26 +134,6 @@
                 android:text="date"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btn_finalizar"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/azul"
-                android:onClick="setFinishedEvent"
-                android:text="@string/finalizar_evento"
-                app:cornerRadius="15dp"
-                app:strokeColor="@color/azul"
-                app:strokeWidth="2dp" />
-
         </LinearLayout>
 
 

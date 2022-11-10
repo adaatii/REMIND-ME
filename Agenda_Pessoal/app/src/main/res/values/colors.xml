@@ -13,4 +13,7 @@
     <color name="medium_priority">#F1EBB1</color>
     <color name="high_priority">#F1B1B1</color>
     <color name="default_priority">#B1BBF1</color>
+    <color name="finished_task">#FFCC80</color>
+
+
 </resources>

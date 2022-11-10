@@ -33,4 +33,5 @@
     <string name="confirmar">Confirmar</string>
     <string name="cancelar">Cancelar</string>
     <string name="finalizar_evento">Finalizar Evento</string>
+    <string name="salvar">Salvar</string>
 </resources>

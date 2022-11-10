@@ -1,8 +1,10 @@
 package com.example.agenda_pessoal.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -38,6 +40,17 @@ public class A_ViewTask extends AppCompatActivity implements Constants {
 
     }
 
+    public void optionAlert(
+            String title,
+            String message,
+            DialogInterface.OnClickListener accept,
+            DialogInterface.OnClickListener refuse
+    ) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title).setMessage(message).setPositiveButton("SIM", accept).setNegativeButton("NÃO", refuse);
+        alertDialog.show();
+    }
+
     public void openEditTask(View view){
         Intent it_aEditTask = new Intent(this, A_EditTask.class);
         it_aEditTask.putExtra("Data", dataInstance);
@@ -51,7 +64,28 @@ public class A_ViewTask extends AppCompatActivity implements Constants {
         it_aTask.putExtra("Position", position);
         setResult(RESULT_OK, it_aTask);
         finish();
+    }
 
+    public void deleteTask(View view) {
+        optionAlert("Deletar Evento", "Deseja realmente deletar o evento ?", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dataInstance.getDataTask().get(position).finished = true;
+                Intent it_aTask = new Intent();
+                it_aTask.putExtra("Data", dataInstance);
+                setResult(RESULT_FIRST_USER, it_aTask);
+                finish();
+            }
+        }, null);
+
+    }
+
+    public  void finishTask(View view){
+        dataInstance.getDataTask().get(position).priority = 4;
+        Intent it_aTask = new Intent();
+        it_aTask.putExtra("Data", dataInstance);
+        setResult(RESULT_FIRST_USER, it_aTask);
+        finish();
     }
 
     public void returnViewTaskToTask(View view){
