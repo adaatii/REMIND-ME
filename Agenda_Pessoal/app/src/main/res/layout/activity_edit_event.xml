@@ -64,15 +64,15 @@
                     android:id="@+id/et_titleEditEvent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/stl_et"
                     android:hint="Título *"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
-                    android:maxLength="19"
+                    android:maxLength="22"
                     android:minHeight="48dp"
+                    android:paddingLeft="10dp"
                     tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
                 <EditText
@@ -84,8 +84,9 @@
                     android:hint="@string/descricao"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
-                    android:maxLength="25"
+                    android:maxLength="30"
                     android:minHeight="48dp"
+                    android:paddingLeft="10dp"
                     tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
             </LinearLayout>
 
@@ -107,6 +108,7 @@
                     android:importantForAutofill="no"
                     android:inputType="date"
                     android:minHeight="48dp"
+                    android:paddingTop="10dp"
                     android:textAlignment="center"
                     android:textSize="20sp" />
 
@@ -127,6 +129,7 @@
                     android:minHeight="48dp"
                     android:textAlignment="center"
                     android:textSize="20sp"
+                    android:paddingTop="10dp"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 

@@ -65,7 +65,9 @@
                 android:hint="@string/t_titulo_star"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
+                android:maxLength="22"
                 android:minHeight="48dp"
+                android:paddingLeft="10dp"
                 tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
             <EditText
@@ -79,7 +81,9 @@
                 android:hint="@string/descricao"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
+                android:maxLength="30"
                 android:minHeight="48dp"
+                android:paddingLeft="10dp"
                 tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
 

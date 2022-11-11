@@ -143,6 +143,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/azul"
+                    app:cornerRadius="15dp"
+                    app:strokeColor="@color/azul"
                     android:onClick="changeTaskToEvent"
                     android:text="Definir como Evento" />
 
@@ -152,6 +154,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/azul"
+                    app:cornerRadius="15dp"
+                    app:strokeColor="@color/azul"
                     android:onClick="finishTask"
                     android:text="Finalizar Tarefa" />
             </LinearLayout>
