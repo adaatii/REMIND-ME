@@ -61,7 +61,6 @@
                 android:inputType="textPersonName|textEmailAddress"
                 android:minHeight="48dp"
                 android:paddingLeft="10dp"
-                android:text="teste@teste.com.br"
                 tools:ignore="SpeakableTextPresentCheck,TextContrastCheck,TextContrastCheck" />
 
 
@@ -78,7 +77,6 @@
                 android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:paddingLeft="10dp"
-                android:text="123"
                 tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
 

@@ -81,16 +81,18 @@ public class A_ViewEvent extends AppCompatActivity implements Constants {
                 finish();
             }
         }, null);
-
     }
 
     private void setInfoEvent() {
         Task event = dataInstance.getDataTask().get(position);
         tv_titleViewEvent.setText(event.getTitle());
-        tv_descriptionViewEvent.setText(event.description);
+        if (event.description.equals("")){
+            tv_descriptionViewEvent.setText("Não há descrição");
+        }else{
+            tv_descriptionViewEvent.setText(event.description);
+        }
         tv_dateTimeViewEvent.setText(event.event.date[0] + " " + event.event.date[1]);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -108,8 +108,10 @@ public class Data implements Parcelable {
         Date time = new Date();
         String localTime = new SimpleDateFormat("HH:mm").format(time);
 
-        dataUser.add(testUser("Lucas", "teste@teste.com.br", "1298875748", "123"));
-        dataUser.add(testUser("Leandro", "teste2@teste.com.br", "4845456484", "123"));
+        dataUser.add(testUser("Lucas", "lucas@gmail.com", "12 98875-7482", "123"));
+        dataUser.add(testUser("Camila", "camila2@gmail.com", "48 95456-4843", "123"));
+        dataUser.add(testUser("Matheus", "camila2@gmail.com", "12 3144-7733", "123"));
+        dataUser.add(testUser("Bruno", "camila2@gmail.com", "41 3143-1722", "123"));
 
         dataTask.add(testEvent(
                 "Prova de ED",

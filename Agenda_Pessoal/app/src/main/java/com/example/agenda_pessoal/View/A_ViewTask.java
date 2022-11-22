@@ -98,7 +98,13 @@ public class A_ViewTask extends AppCompatActivity implements Constants {
     private void setInfoEvent() {
         Task task = dataInstance.getDataTask().get(position);
         tv_titleViewTask.setText(task.getTitle());
-        tv_descriptionViewTask.setText(task.description);
+        if (task.description.equals("")){
+            tv_descriptionViewTask.setText("Não há descrição");
+        }else{
+            tv_descriptionViewTask.setText(task.description);
+        }
+
+
     }
 
     @Override
