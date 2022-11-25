@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.agenda_pessoal.Controller.Data;
@@ -16,6 +18,7 @@ import com.example.agenda_pessoal.Controller.Task;
 import com.example.agenda_pessoal.Model.Adapter.RecyclerAdapterEvent;
 import com.example.agenda_pessoal.Model.Adapter.RecyclerAdapterTask;
 import com.example.agenda_pessoal.Model.Constants;
+import com.example.agenda_pessoal.Model.Sort.PriorityTree;
 import com.example.agenda_pessoal.Model.Sort.TaskTree;
 import com.example.agenda_pessoal.R;
 
@@ -28,7 +31,7 @@ public class A_Task extends AppCompatActivity implements Constants {
     private RecyclerView recyclerView;
     private RecyclerAdapterTask adapterTask;
     TextView tv_Task;
-
+    int check = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class A_Task extends AppCompatActivity implements Constants {
 
         getWindow().setStatusBarColor(Color.rgb(0, 71, 179));
 
+        // filterSwitch = (Switch) findViewById(R.id.filterSwitch);
         tv_Task = findViewById(R.id.tv_Task);
         dataInstance = getIntent().getExtras().getParcelable("Data");
         String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -89,6 +93,64 @@ public class A_Task extends AppCompatActivity implements Constants {
 
     }
 
+    public void prioritySort() {
+        ArrayList<Task> taskPriority = dataInstance.getDataTask();
+        PriorityTree priorityTree = new PriorityTree();
+        //Percorre ArrayList Task, filtrando os finalizados
+        for (int id = 0; id < taskPriority.size(); id++) {
+            Task item = taskPriority.get(id);
+            if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
+
+                priorityTree.add(id, item.priority);
+            }
+        }
+        adapterTask.reloadSort(dataInstance.getDataTask(), priorityTree.sort());
+    }
+
+    public void filter(View view) {
+        if (check == 0) {
+            check = 1;
+        } else {
+            check = 0;
+        }
+
+        if (check == 1) {
+            prioritySort();
+        } else {
+            Integer count = 0;
+            ArrayList<Task> task = new ArrayList<>();
+            ArrayList<Integer> sortedId = new ArrayList<>();
+            //Percorre ArrayList Task, filtrando os finalizados
+            for (Task item : dataInstance.getDataTask()) {
+                if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
+                    task.add(item);
+                    sortedId.add(count);
+                }
+                count++;
+            }
+            adapterTask.reloadView(task, sortedId);
+        }
+    }
+
+    public void filterReturn() {
+        if (check == 1) {
+            prioritySort();
+        } else {
+            Integer count = 0;
+            ArrayList<Task> task = new ArrayList<>();
+            ArrayList<Integer> sortedId = new ArrayList<>();
+            //Percorre ArrayList Task, filtrando os finalizados
+            for (Task item : dataInstance.getDataTask()) {
+                if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
+                    task.add(item);
+                    sortedId.add(count);
+                }
+                count++;
+            }
+            adapterTask.reloadView(task, sortedId);
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -98,19 +160,8 @@ public class A_Task extends AppCompatActivity implements Constants {
                 Data dataSerialize = data.getExtras().getParcelable("NewTask");
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("NewTask"));
+                filterReturn();
 
-                Integer count = 0;
-                ArrayList<Task> task = new ArrayList<>();
-                ArrayList<Integer> sortedId = new ArrayList<>();
-                //Percorre ArrayList Task, filtrando os finalizados
-                for (Task item : dataInstance.getDataTask()) {
-                    if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
-                        task.add(item);
-                        sortedId.add(count);
-                    }
-                    count++;
-                }
-                adapterTask.reloadView(task, sortedId);
             }
         }
         if (requestCode == VIEW_TASK_ACTIVITY_REQUEST_CODE) {
@@ -123,23 +174,11 @@ public class A_Task extends AppCompatActivity implements Constants {
                 it_editEvent.putExtra("Data", dataInstance);
                 it_editEvent.putExtra("Position", position);
                 startActivityForResult(it_editEvent, EDIT_EVENT_ACTIVITY_REQUEST_CODE);
-            }else if(resultCode == RESULT_FIRST_USER){
+            } else if (resultCode == RESULT_FIRST_USER) {
                 Data dataSerialize = data.getExtras().getParcelable("Data");
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("Data"));
-
-                Integer count = 0;
-                ArrayList<Task> task = new ArrayList<>();
-                ArrayList<Integer> sortedId = new ArrayList<>();
-                //Percorre ArrayList Task, filtrando os finalizados
-                for (Task item : dataInstance.getDataTask()) {
-                    if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
-                        task.add(item);
-                        sortedId.add(count);
-                    }
-                    count++;
-                }
-                adapterTask.reloadView(task, sortedId);
+                filterReturn();
             }
         }
         if (requestCode == EDIT_EVENT_ACTIVITY_REQUEST_CODE) {
@@ -147,36 +186,15 @@ public class A_Task extends AppCompatActivity implements Constants {
                 Data dataSerialize = data.getExtras().getParcelable("EditedEvent");
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("EditedEvent"));
+                filterReturn();
 
-                Integer count = 0;
-                ArrayList<Task> task = new ArrayList<>();
-                ArrayList<Integer> sortedId = new ArrayList<>();
-                //Percorre ArrayList Task, filtrando os finalizados
-                for (Task item : dataInstance.getDataTask()) {
-                    if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
-                        task.add(item);
-                        sortedId.add(count);
-                    }
-                    count++;
-                }
-                adapterTask.reloadView(task, sortedId);
-            } if (resultCode == RESULT_OK) {
+            }
+            if (resultCode == RESULT_OK) {
                 Data dataSerialize = data.getExtras().getParcelable("EditedEvent");
                 Log.d("OpenSerialize", dataSerialize.serialize());
                 dataInstance.Update(data.getExtras().getParcelable("EditedEvent"));
+                filterReturn();
 
-                Integer count = 0;
-                ArrayList<Task> task = new ArrayList<>();
-                ArrayList<Integer> sortedId = new ArrayList<>();
-                //Percorre ArrayList Task, filtrando os finalizados
-                for (Task item : dataInstance.getDataTask()) {
-                    if (!item.finished && !item.isEvent() && item.getOwner(dataInstance.log)) {
-                        task.add(item);
-                        sortedId.add(count);
-                    }
-                    count++;
-                }
-                adapterTask.reloadView(task, sortedId);
             }
         }
     }

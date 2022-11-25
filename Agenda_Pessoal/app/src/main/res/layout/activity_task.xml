@@ -31,6 +31,8 @@
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="SpeakableTextPresentCheck" />
 
+
+
         <Button
             android:id="@+id/btn_newTask"
             android:layout_width="54dp"
@@ -64,6 +66,21 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_newTask"
             app:layout_constraintStart_toEndOf="@+id/btn_backTaskToEvent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_filter_task"
+            android:layout_width="54dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="1dp"
+            android:backgroundTint="@color/azul"
+            android:onClick="filter"
+            app:icon="@drawable/ic_baseline_low_priority_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_newTask"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            tools:ignore="SpeakableTextPresentCheck" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

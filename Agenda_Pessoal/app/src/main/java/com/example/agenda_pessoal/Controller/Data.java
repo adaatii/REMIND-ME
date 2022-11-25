@@ -156,7 +156,7 @@ public class Data implements Parcelable {
         dataTask.add(testTask(
                 "Comprar maçãs",
                 0,
-                " ",0));
+                "",0));
         dataRelationship.add(new Relationship(0, 1));
         dataRelationship.add(new Relationship(1, 0));
 

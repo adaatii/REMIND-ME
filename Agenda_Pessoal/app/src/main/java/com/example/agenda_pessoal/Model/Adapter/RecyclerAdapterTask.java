@@ -71,6 +71,19 @@ public class RecyclerAdapterTask extends RecyclerView.Adapter<RecyclerAdapterTas
         notifyDataSetChanged();
     }
 
+
+     public void reloadSort(ArrayList<Task> task, ArrayList<Integer> id){
+         this.task.clear();
+         sortedId.clear();
+         //Pega somente dos Id's que já foram filtrados e ordenado usando o taskTree (coloca em this.task)
+         for (Integer i: id) {
+             this.task.add(task.get(i));
+         }
+         //this.task.addAll(task);
+         sortedId.addAll(id);
+         notifyDataSetChanged();
+     }
+
     public void setListener(itemActivityListener listener){this.listener = listener;}
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
