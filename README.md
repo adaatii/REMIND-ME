@@ -1,4 +1,4 @@
-# REMIND ME - Aplicação para criar e Gerenciar Compromissos e tarefas.
+# REMIND ME - Aplicação para criar e gerenciar Compromissos e Tarefas.
 
-###### Repositorio referente ao projeto REMIND ME.
-###### Projeto desenvolvido para o disciplina Estrutura de Dados do curso de Analise e Desenvolvimento de Sistemas da Fatec de Cruzeiro -SP.
+###### Repositório referente ao projeto REMIND ME.
+###### Projeto desenvolvido para a disciplina Estrutura de Dados do curso de Análise e Desenvolvimento de Sistemas da Fatec de Cruzeiro-SP.
