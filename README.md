@@ -16,7 +16,7 @@
 ###### -> Não possuem prefixos ou sufixos (Ex: User);
 
 #### Sort_and_Adapters (Diretório que contém as classes referente ao método de ordenação, a classe de Constantes e Adapters utilizados no projeto):
-###### As classes em View são nomeadas da seguinte maneira:
+###### As classes em Sort_and_Adapters são nomeadas da seguinte maneira:
 ###### -> Prefixo "RecyclerAdapter" = Classes Referentes aos adapters das RecyclerViews. (Ex: RecyclerAdapterEvent);
 ###### -> Sufixo "Tree" = Classes Referentes as  classes de árvores binárias. (Ex: TaskTree);
 ###### -> Sufixo "Node" = Classes Referentes as classes de nós das árvores binárias. (Ex: TaskNode);
