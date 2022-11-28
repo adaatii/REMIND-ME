@@ -13,14 +13,13 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.agenda_pessoal.Controller.Data;
-import com.example.agenda_pessoal.Controller.Event;
-import com.example.agenda_pessoal.Controller.Task;
-import com.example.agenda_pessoal.Model.Constants;
+import com.example.agenda_pessoal.Controller_and_Model.Data;
+import com.example.agenda_pessoal.Controller_and_Model.Event;
+import com.example.agenda_pessoal.Controller_and_Model.Task;
+import com.example.agenda_pessoal.Sort_and_Adapters.Constants;
 import com.example.agenda_pessoal.R;
 
 import java.text.SimpleDateFormat;

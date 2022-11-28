@@ -15,11 +15,11 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-import com.example.agenda_pessoal.Controller.Data;
-import com.example.agenda_pessoal.Controller.Task;
-import com.example.agenda_pessoal.Model.Adapter.RecyclerAdapterEvent;
-import com.example.agenda_pessoal.Model.Constants;
-import com.example.agenda_pessoal.Model.Sort.TaskTree;
+import com.example.agenda_pessoal.Controller_and_Model.Data;
+import com.example.agenda_pessoal.Controller_and_Model.Task;
+import com.example.agenda_pessoal.Sort_and_Adapters.Adapter.RecyclerAdapterEvent;
+import com.example.agenda_pessoal.Sort_and_Adapters.Constants;
+import com.example.agenda_pessoal.Sort_and_Adapters.Sort.TaskTree;
 import com.example.agenda_pessoal.R;
 
 
@@ -118,7 +118,7 @@ public class A_Event extends AppCompatActivity implements Constants {
                 // Ordenação do TaskData (dataInstance.getDataTask())
                 for (int i = 0; i < task.size(); i++) {
                     Task item = task.get(i);
-                    if (item.isEvent() && item.getOwner(dataInstance.log)){
+                    if (item.isEvent() && item.getOwner(dataInstance.log) && !item.finished){
                         taskTree.add(i, item.event.date, date);
                     }
                 }

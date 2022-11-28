@@ -1,4 +1,4 @@
-package com.example.agenda_pessoal.Controller;
+package com.example.agenda_pessoal.Controller_and_Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

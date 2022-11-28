@@ -9,17 +9,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.agenda_pessoal.Controller.Data;
-import com.example.agenda_pessoal.Controller.Task;
-import com.example.agenda_pessoal.Model.Adapter.RecyclerAdapterEvent;
-import com.example.agenda_pessoal.Model.Adapter.RecyclerAdapterTask;
-import com.example.agenda_pessoal.Model.Constants;
-import com.example.agenda_pessoal.Model.Sort.PriorityTree;
-import com.example.agenda_pessoal.Model.Sort.TaskTree;
+import com.example.agenda_pessoal.Controller_and_Model.Data;
+import com.example.agenda_pessoal.Controller_and_Model.Task;
+import com.example.agenda_pessoal.Sort_and_Adapters.Adapter.RecyclerAdapterTask;
+import com.example.agenda_pessoal.Sort_and_Adapters.Constants;
+import com.example.agenda_pessoal.Sort_and_Adapters.Sort.PriorityTree;
 import com.example.agenda_pessoal.R;
 
 import java.time.LocalDateTime;

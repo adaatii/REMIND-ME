@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.agenda_pessoal.Controller.Data;
-import com.example.agenda_pessoal.Controller.User;
-import com.example.agenda_pessoal.Model.Constants;
+import com.example.agenda_pessoal.Controller_and_Model.Data;
+import com.example.agenda_pessoal.Controller_and_Model.User;
+import com.example.agenda_pessoal.Sort_and_Adapters.Constants;
 import com.example.agenda_pessoal.R;
 
 public class A_Register extends AppCompatActivity implements Constants {

@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.example.agenda_pessoal.Controller.Data;
-import com.example.agenda_pessoal.Model.Constants;
+import com.example.agenda_pessoal.Controller_and_Model.Data;
+import com.example.agenda_pessoal.Sort_and_Adapters.Constants;
 import com.example.agenda_pessoal.R;
 
 public class A_Home extends AppCompatActivity implements Constants {

@@ -3,24 +3,17 @@ package com.example.agenda_pessoal.View;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TimePicker;
 
-import com.example.agenda_pessoal.Controller.Data;
-import com.example.agenda_pessoal.Controller.Task;
-import com.example.agenda_pessoal.Model.Constants;
+import com.example.agenda_pessoal.Controller_and_Model.Data;
+import com.example.agenda_pessoal.Controller_and_Model.Task;
+import com.example.agenda_pessoal.Sort_and_Adapters.Constants;
 import com.example.agenda_pessoal.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class A_NewTask extends AppCompatActivity implements Constants {
     Data dataInstance;
