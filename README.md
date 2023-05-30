@@ -7,7 +7,7 @@
 ### ORGANIZAÇÃO DO PROJETO
 ###### A organização dos arquivos do projeto foi definida:
 
-#### View (Diretório que contém as classes referente as activitys do projeto):
+#### View (Diretório que contém as classes referente as activities do projeto):
 ###### As classes em View são nomeadas da seguinte maneira:
 ###### -> Prefixo "A_" = Classe Referente a Activity (Ex: A_Evento);
 
